@@ -15,7 +15,7 @@ class win_login:
         username = self.ui.Edit_username.text().strip()
         password = self.ui.Edit_password.text().strip()
 
-        if username != '0' or password != '0':
+        if username != '22250423' or password != '22250423':
             QMessageBox.warning(
                 self.ui,
                 '登陆失败',

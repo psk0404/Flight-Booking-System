@@ -22,6 +22,8 @@ class Mainsystem:
         self.layout = QVBoxLayout(self.ui.content_widget)
         self.layout.addWidget(self.ui.tool_box)
 
+        self.no_flight_label = None
+
     def on_query_clicked(self):
 
         city_A = self.ui.comboBox_5.currentText()
@@ -35,6 +37,12 @@ class Mainsystem:
         for i in range(count - 1, -1, -1):  # 从后向前遍历
             self.ui.tool_box.removeItem(i)
 
+        # 删除 no_flight_label 的方法
+        if self.no_flight_label:  # 确保标签存在
+            self.ui.tool_box.layout().removeWidget(self.no_flight_label)
+            self.no_flight_label.deleteLater()  # 确保它被正确销毁
+            self.no_flight_label = None  # 清空引用
+
     def show(self, city_A, city_B):
 
         # load flight data
@@ -44,30 +52,36 @@ class Mainsystem:
 
         # num_flights = len(flight_manager.flights[city_A][city_B])
         # print(f"从 {city_A} 到 {city_B} 的航班数量: {num_flights}")
+        flights = flight_manager.flights.get(city_A, {}).get(city_B, [])
 
         self.delete()
-
         self.ui.tool_box.layout().setSpacing(20)  # 设置间距为20像素
 
-        for i, flight in enumerate(flight_manager.flights[city_A][city_B]):
-            page = QWidget()
-            page_layout = QHBoxLayout()
-
-            # show info
-            for key, value in flight.items():
-
-                label = QLabel(f" || {key}: {value} ||")
-                # set font
-                font = QFont()
-                font.setPointSize(12)
-                label.setFont(font)
-                page_layout.addWidget(label)
-
-            page.setLayout(page_layout)
-
+        if not flights:
+            self.no_flight_label = QLabel(f"     十分抱歉！  目前从 {city_A} 到 {city_B} 暂无航班信息")
             font = QFont()
-            font.setPointSize(14)
+            font.setPointSize(18)
+            self.no_flight_label.setFont(font)
+            self.ui.tool_box.layout().addWidget(self.no_flight_label)
+        else:
+            for i, flight in enumerate(flights):
+                page = QWidget()
+                page_layout = QHBoxLayout()
 
-            self.ui.tool_box.setFont(font)
-            self.ui.tool_box.addItem(page, f"航班 {i + 1}")
+                # show info
+                for key, value in flight.items():
+                    label = QLabel(f" || {key}: {value} ||")
+                    # set font
+                    font = QFont()
+                    font.setPointSize(12)
+                    label.setFont(font)
+                    page_layout.addWidget(label)
+
+                page.setLayout(page_layout)
+
+                font = QFont()
+                font.setPointSize(14)
+
+                self.ui.tool_box.setFont(font)
+                self.ui.tool_box.addItem(page, f"航班 {i + 1}")
 
