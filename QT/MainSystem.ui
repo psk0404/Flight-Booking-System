@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>836</width>
+    <height>594</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainSystem</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../../../.designer/data/images/logo.png</normaloff>../../../../../.designer/data/images/logo.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>150</y>
+      <width>731</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>729</width>
+       <height>389</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>70</y>
+      <width>561</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QComboBox" name="comboBox">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>经停次数</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>不限</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>仅限直达航班</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>经停不超过1次</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>经停不超过2次</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_2">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>价格</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>升序</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>降序</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_3">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>飞行时长</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>升序</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>降序</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>30</y>
+      <width>561</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QComboBox" name="comboBox_5">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="maxVisibleItems">
+        <number>16</number>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>18</width>
+         <height>18</height>
+        </size>
+       </property>
+       <item>
+        <property name="text">
+         <string>出发城市</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>北京</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>上海</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>南京</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>武汉</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>长春</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>厦门</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>深圳</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>成都</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>西安</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>乌鲁木齐</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>首尔</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>东京</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>洛杉矶</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>柏林</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>巴黎</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>曼谷</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_6">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="maxVisibleItems">
+        <number>16</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>目的城市</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>北京</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>上海</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>南京</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>武汉</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>长春</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>厦门</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>深圳</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>成都</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>西安</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>乌鲁木齐</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>首尔</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>东京</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>洛杉矶</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>柏林</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>巴黎</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>曼谷</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="dateEdit">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2024</year>
+         <month>10</month>
+         <day>14</day>
+        </datetime>
+       </property>
+       <property name="maximumDateTime">
+        <datetime>
+         <hour>23</hour>
+         <minute>59</minute>
+         <second>59</second>
+         <year>2024</year>
+         <month>11</month>
+         <day>24</day>
+        </datetime>
+       </property>
+       <property name="minimumDateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>2024</year>
+         <month>10</month>
+         <day>14</day>
+        </datetime>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="query">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>查询</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>836</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actionbanbenhao"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>本人机票</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>支付服务</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>用户信息</string>
+    </property>
+   </widget>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionbanbenhao">
+   <property name="text">
+    <string>版本号</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
