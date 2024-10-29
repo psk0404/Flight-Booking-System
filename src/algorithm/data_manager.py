@@ -52,12 +52,6 @@ class FlightManager:
         else:
             return None
 
-    def get_flight(self, city_A, city_B, i, info):
-        if city_A in self.flights and city_B in self.flights[city_A]:
-            return self.flights[city_A][city_B][i][info]
-        else:
-            return None
-
     def display_flights(self, city_A, city_B, i):
         """显示从 city_A 到 city_B 的航班信息"""
         flights_info = self.get_flights(city_A, city_B)
@@ -74,26 +68,6 @@ class FlightManager:
             print()
         else:
             print(f"没有从 {city_A} 到 {city_B} 的航班信息。")
-
-    def get_cheapest_flight(self, city_A, city_B):
-        """获取从 city_A 到 city_B 费用最少的航班"""
-        flights_info = self.get_flights(city_A, city_B)
-        if flights_info:
-            # 按机票价格排序并返回最便宜的航班
-            cheapest_flight = min(flights_info, key=lambda x: x['机票价格'])
-            return cheapest_flight
-        else:
-            return None
-
-    def get_shortest_flight(self, city_A, city_B):
-        """获取从 city_A 到 city_B 时间最短的航班"""
-        flights_info = self.get_flights(city_A, city_B)
-        if flights_info:
-            # 按行程时间排序并返回时间最短的航班
-            shortest_flight = min(flights_info, key=lambda x: self.extract_duration(x['行程时间']))
-            return shortest_flight
-        else:
-            return None
 
     def extract_duration(self, duration_string):
 
