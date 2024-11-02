@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>836</width>
-    <height>594</height>
+    <width>960</width>
+    <height>680</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>960</width>
+    <height>680</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainSystem</string>
@@ -17,142 +23,176 @@
    <iconset>
     <normaloff>../../../../../.designer/data/images/logo.png</normaloff>../../../../../.designer/data/images/logo.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white;
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="QLabel" name="from">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>150</y>
-      <width>731</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>729</width>
-       <height>389</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout"/>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>70</y>
-      <width>561</width>
+      <x>240</x>
+      <y>50</y>
+      <width>131</width>
       <height>51</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QComboBox" name="comboBox">
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <item>
-        <property name="text">
-         <string>经停次数</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>不限</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>仅限直达航班</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>经停不超过1次</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>经停不超过2次</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_2">
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <item>
-        <property name="text">
-         <string>价格</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>升序</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>降序</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_3">
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <item>
-        <property name="text">
-         <string>飞行时长</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>升序</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>降序</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding: 5px;                /* 内边距，增加文本与边框之间的距离 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QLabel" name="to">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>600</x>
+      <y>50</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding: 5px;                /* 内边距，增加文本与边框之间的距离 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ft">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>55</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../data/images/ct_parrow.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
       <y>30</y>
-      <width>561</width>
-      <height>29</height>
+      <width>681</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    border: 4px solid #3498db;   /* 设置边框为4像素，颜色为深蓝色 */
+    border-radius: 10px;         /* 设置圆角半径，调整为较小的值 */
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>190</y>
+      <width>681</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    border: 4px solid #3498db;   /* 设置边框为4像素，颜色为深蓝色 */
+    border-radius: 10px;         /* 设置圆角半径，调整为较小的值 */
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>140</y>
+      <width>621</width>
+      <height>32</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>12</number>
+     </property>
      <item>
-      <widget class="QComboBox" name="comboBox_5">
+      <widget class="QComboBox" name="from_2">
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
+         <family>华文中宋</family>
+         <pointsize>16</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 30px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 20px;                 /* 调整箭头的宽度 */
+    height: 20px;                /* 调整箭头的高度 */
+    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+}
+</string>
+       </property>
+       <property name="currentText">
+        <string/>
        </property>
        <property name="maxVisibleItems">
         <number>16</number>
@@ -163,267 +203,190 @@
          <height>18</height>
         </size>
        </property>
-       <item>
-        <property name="text">
-         <string>出发城市</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>北京</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>上海</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>南京</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>武汉</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>长春</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>厦门</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>深圳</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>成都</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>西安</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>乌鲁木齐</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>首尔</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>东京</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>洛杉矶</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>柏林</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>巴黎</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>曼谷</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_6">
+      <widget class="QComboBox" name="from_3">
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
+         <family>华文中宋</family>
+         <pointsize>16</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 30px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 20px;                 /* 调整箭头的宽度 */
+    height: 20px;                /* 调整箭头的高度 */
+    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+}
+</string>
+       </property>
+       <property name="currentText">
+        <string/>
        </property>
        <property name="maxVisibleItems">
         <number>16</number>
        </property>
-       <item>
-        <property name="text">
-         <string>目的城市</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>北京</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>上海</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>南京</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>武汉</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>长春</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>厦门</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>深圳</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>成都</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>西安</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>乌鲁木齐</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>首尔</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>东京</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>洛杉矶</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>柏林</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>巴黎</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>曼谷</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDateEdit" name="dateEdit">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="dateTime">
-        <datetime>
-         <hour>0</hour>
-         <minute>0</minute>
-         <second>0</second>
-         <year>2024</year>
-         <month>10</month>
-         <day>14</day>
-        </datetime>
-       </property>
-       <property name="maximumDateTime">
-        <datetime>
-         <hour>23</hour>
-         <minute>59</minute>
-         <second>59</second>
-         <year>2024</year>
-         <month>11</month>
-         <day>24</day>
-        </datetime>
-       </property>
-       <property name="minimumDateTime">
-        <datetime>
-         <hour>0</hour>
-         <minute>0</minute>
-         <second>0</second>
-         <year>2024</year>
-         <month>10</month>
-         <day>14</day>
-        </datetime>
+       <property name="iconSize">
+        <size>
+         <width>18</width>
+         <height>18</height>
+        </size>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="query">
+      <widget class="QComboBox" name="from_4">
        <property name="font">
         <font>
-         <pointsize>14</pointsize>
+         <family>华文中宋</family>
+         <pointsize>16</pointsize>
         </font>
        </property>
-       <property name="text">
-        <string>查询</string>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 30px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 20px;                 /* 调整箭头的宽度 */
+    height: 20px;                /* 调整箭头的高度 */
+    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+}
+</string>
+       </property>
+       <property name="currentText">
+        <string/>
+       </property>
+       <property name="maxVisibleItems">
+        <number>16</number>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>18</width>
+         <height>18</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="from_5">
+       <property name="font">
+        <font>
+         <family>华文中宋</family>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 30px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 20px;                 /* 调整箭头的宽度 */
+    height: 20px;                /* 调整箭头的高度 */
+    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+}
+</string>
+       </property>
+       <property name="currentText">
+        <string/>
+       </property>
+       <property name="maxVisibleItems">
+        <number>16</number>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>18</width>
+         <height>18</height>
+        </size>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
+   <zorder>frame</zorder>
+   <zorder>from</zorder>
+   <zorder>to</zorder>
+   <zorder>ft</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>from_2</zorder>
+   <zorder>from_3</zorder>
+   <zorder>from_4</zorder>
+   <zorder>from_5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>836</width>
-     <height>22</height>
+     <width>960</width>
+     <height>37</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>帮助</string>
-    </property>
-    <addaction name="actionbanbenhao"/>
-    <addaction name="separator"/>
-   </widget>
+   <property name="font">
+    <font>
+     <family>华文中宋</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+    padding-top: 6px;    /* 设置顶部填充 */
+    padding-bottom: 12px; /* 设置底部填充 */
+}
+</string>
+   </property>
    <widget class="QMenu" name="menu_2">
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="title">
      <string>本人机票</string>
     </property>
    </widget>
    <widget class="QMenu" name="menu_3">
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>支付服务</string>
     </property>
@@ -434,9 +397,8 @@
     </property>
    </widget>
    <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
    <addaction name="menu_4"/>
-   <addaction name="menu"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionbanbenhao">

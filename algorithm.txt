@@ -1,0 +1,137 @@
+#include <iostream>
+#include <cstring>
+#include <stack>
+using namespace std;
+
+const int N = 200;
+
+int e[N], ne[N], h[N], idx;
+int flag;
+stack <int> s1;
+stack <stack<int>> s2, backup;
+
+
+void add(int a, int b){
+    e[idx] = b, ne[idx] = h[a], h[a] = idx, idx ++;
+}
+
+void init(int a){
+    memset(h, -1, sizeof(h));
+    add(1, 2), add(1, 8);
+    add(2, 1);
+    add(3, 5), add(3, 11), add(3, 9), add(3, 15), add(3, 16);
+    add(4, 16), add(4, 12), add(4, 15), add(4, 14);
+    add(5, 14), add(5, 3), add(5, 13);
+    add(6, 11), add(6, 7);
+    add(7, 6), add(7, 11);
+    add(8, 12), add(8, 1);
+    add(9, 3); add(9, 11); add(9, 10);
+    add(10, 9); add(10, 11); add(10, 15);
+    add(11, 3); add(11, 9); add(11, 10); add(11, 13); add(11, 6); add(11, 7);
+    add(12, 15); add(12, 4); add(12, 8); add(13, 11); add(13, 5);
+    add(14, 5); add(14, 16); add(14, 4); add(15, 3); add(15, 12); add(15, 10); add(15, 4);
+    add(16, 3); add(16, 14); add(16, 4);
+
+    s1.push(a);
+    stack<int> list;
+    for (int i = h[a]; i != -1; i = ne[i]){
+        int element = e[i];
+        list.push(element);
+    }
+    s2.push(list);
+}
+
+bool existsS(stack<int> s, int ele) {
+    while (!s.empty()) {
+        if (s.top() == ele) {
+            return true;
+        }
+        s.pop();
+    }
+    return false;
+}
+
+void createstack(){
+    int u;
+    int element0 = s2.top().top();
+    s2.top().pop();
+    if (!existsS(s1, element0)){
+        u = element0;
+        s1.push(element0);
+        flag = 1;
+    }else{
+        while(!s2.top().empty()){
+            int element1 = s2.top().top();
+            s2.top().pop();
+            if (!existsS(s1, element1)){
+                flag = 1;
+                u = element0;
+                s1.push(element1);
+            }
+            else continue;
+        }
+    }
+    if (!flag) {
+        stack<int> emptyStack;
+        s2.push(emptyStack);
+    }
+
+    stack<int> ts;
+    for (int i = h[u]; i != -1; i = ne[i]){
+        int ele = e[i];
+        if (!existsS(s1, ele)) ts.push(ele);
+    }
+    s2.push(ts);
+    flag = 0;
+}
+
+void deletestack(){
+    s2.pop();
+    s1.pop();
+
+}
+
+void storage(){
+    backup.push(s1);
+}
+
+void outputs(stack<int> s) {
+    stack<int> temp;
+
+    while (!s.empty()) {
+        temp.push(s.top());
+        s.pop();
+    }
+    while (!temp.empty()) {
+        cout << temp.top() << " ";
+        temp.pop();
+    }
+    cout << endl;
+}
+
+int main(){
+
+    init(3);
+
+    while(!s1.empty() && !s2.empty()){
+        if (s2.top().empty()) {
+            deletestack();
+            continue;
+        }
+        createstack();
+
+        if (s1.top() == 15){
+            storage();
+            deletestack();
+            continue;
+        }
+    }
+
+    while(!backup.empty()){
+        stack<int> res;
+        res = backup.top();
+        outputs(res);
+        backup.pop();
+    }
+    return 0;
+}

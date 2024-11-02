@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QueryWindow</class>
+ <widget class="QMainWindow" name="QueryWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>960</width>
+    <height>680</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>QueryWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../data/images/logo.png</normaloff>../data/images/logo.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white;
+</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="background">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>951</width>
+      <height>271</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../data/images/background1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>250</y>
+      <width>811</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <widget class="QComboBox" name="from">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>30</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文中宋</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 30px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 20px;                 /* 调整箭头的宽度 */
+    height: 20px;                /* 调整箭头的高度 */
+    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+}
+</string>
+     </property>
+     <property name="currentText">
+      <string>  出发地</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>16</number>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>18</width>
+       <height>18</height>
+      </size>
+     </property>
+     <item>
+      <property name="text">
+       <string>  出发地</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>北京</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>上海</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="to">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>30</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文中宋</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 30px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 20px;                 /* 调整箭头的宽度 */
+    height: 20px;                /* 调整箭头的高度 */
+    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+}
+</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>12</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>  目的地</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../data/images/from.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>30</y>
+       <width>31</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../data/images/to.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>40</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>16</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #ADD8E6;  /* 浅蓝色背景 */
+    border: none;                /* 去掉默认边框 */
+    border-radius: 15px;        /* 圆角 */
+}
+</string>
+     </property>
+     <property name="text">
+      <string>search</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="wordmap">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>941</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../data/images/background2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
