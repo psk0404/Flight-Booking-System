@@ -34,9 +34,9 @@
    <widget class="QLabel" name="background">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>9</y>
-      <width>951</width>
+      <x>-1</x>
+      <y>-1</y>
+      <width>971</width>
       <height>271</height>
      </rect>
     </property>
@@ -59,7 +59,7 @@
       <height>111</height>
      </rect>
     </property>
-    <widget class="QComboBox" name="from">
+    <widget class="QComboBox" name="fromcity">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -71,35 +71,46 @@
      <property name="font">
       <font>
        <family>华文中宋</family>
-       <pointsize>16</pointsize>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QComboBox {
-    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
-    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
-    border-radius: 15px;         /* 圆角 */
-    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+      <string notr="true">
+QComboBox {
+    background-color: #FFFFFF;    /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;    /* 设置边框颜色 */
+    border-radius: 15px;          /* 圆角 */
+    padding-right: 30px;          /* 右侧填充，增加箭头部分的宽度 */
+    font-size: 16px;              /* 设置下拉框的字体大小 */
+}
+
+QComboBox QAbstractItemView {
+    font-size: 10px;              /* 设置下拉框选项的字体大小 */
+    border: 1px solid #3498db;    /* 设置选项框的边框 */
+    selection-background-color: #3498db;  /* 设置选中项的背景颜色 */
+    selection-color: white;       /* 设置选中项的字体颜色 */
+    padding: 5px;                 /* 设置每个选项的内边距（垂直间距） */
 }
 
 QComboBox::drop-down {
     width: 30px;                  /* 增加下拉箭头的宽度 */
-    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
-    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+    border-left: 2px solid #3498db; /* 左侧边框 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角 */
 }
 
 QComboBox::down-arrow {
     width: 20px;                 /* 调整箭头的宽度 */
     height: 20px;                /* 调整箭头的高度 */
-    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+    image: url(&quot;C:/Users/Lenovo/PycharmProjects/BJUT_dsc/data/images/parrow_svg.svg&quot;);
 }
+
 </string>
      </property>
      <property name="currentText">
-      <string>  出发地</string>
+      <string>      出发地</string>
      </property>
      <property name="maxVisibleItems">
-      <number>16</number>
+      <number>19</number>
      </property>
      <property name="iconSize">
       <size>
@@ -109,21 +120,91 @@ QComboBox::down-arrow {
      </property>
      <item>
       <property name="text">
-       <string>  出发地</string>
+       <string>      出发地</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>北京</string>
+       <string>  北京</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>上海</string>
+       <string>  成都</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  南京</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  武汉</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  长春</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  深圳</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  厦门</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  西安</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  乌鲁木齐</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  柏林</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  巴黎</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  东京</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  首尔</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  曼谷</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  洛杉矶</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  上海</string>
       </property>
      </item>
     </widget>
-    <widget class="QComboBox" name="to">
+    <widget class="QComboBox" name="tocity">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -135,28 +216,39 @@ QComboBox::down-arrow {
      <property name="font">
       <font>
        <family>华文中宋</family>
-       <pointsize>16</pointsize>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QComboBox {
-    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
-    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
-    border-radius: 15px;         /* 圆角 */
-    padding-right: 30px;         /* 右侧填充，增加箭头部分的宽度 */
+      <string notr="true">
+QComboBox {
+    background-color: #FFFFFF;    /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;    /* 设置边框颜色 */
+    border-radius: 15px;          /* 圆角 */
+    padding-right: 30px;          /* 右侧填充，增加箭头部分的宽度 */
+    font-size: 16px;              /* 设置下拉框的字体大小 */
+}
+
+QComboBox QAbstractItemView {
+    font-size: 10px;              /* 设置下拉框选项的字体大小 */
+    border: 1px solid #3498db;    /* 设置选项框的边框 */
+    selection-background-color: #3498db;  /* 设置选中项的背景颜色 */
+    selection-color: white;       /* 设置选中项的字体颜色 */
+    padding: 5px;                 /* 设置每个选项的内边距（垂直间距） */
 }
 
 QComboBox::drop-down {
     width: 30px;                  /* 增加下拉箭头的宽度 */
-    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
-    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+    border-left: 2px solid #3498db; /* 左侧边框 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角 */
 }
 
 QComboBox::down-arrow {
     width: 20px;                 /* 调整箭头的宽度 */
     height: 20px;                /* 调整箭头的高度 */
-    image: url(&quot;data/images/parrow.jpg&quot;); /* 可选：使用自定义箭头图像 */
+    image: url(&quot;C:/Users/Lenovo/PycharmProjects/BJUT_dsc/data/images/parrow_svg.svg&quot;);
 }
+
 </string>
      </property>
      <property name="maxVisibleItems">
@@ -164,7 +256,87 @@ QComboBox::down-arrow {
      </property>
      <item>
       <property name="text">
-       <string>  目的地</string>
+       <string>      目的地</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  北京</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  成都</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  南京</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  武汉</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  长春</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  深圳</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  厦门</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  西安</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  乌鲁木齐</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  柏林</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  巴黎</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  东京</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  首尔 </string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  曼谷</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  洛杉矶</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  上海</string>
       </property>
      </item>
     </widget>
@@ -235,14 +407,149 @@ QComboBox::down-arrow {
       <string>search</string>
      </property>
     </widget>
+    <widget class="QComboBox" name="to_2">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>20</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文中宋</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 10px;         /* 圆角 */
+    padding-right: 20px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 20px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 10px;                 /* 调整箭头的宽度 */
+    height: 10px;                /* 调整箭头的高度 */
+    image: url(&quot;C:/Users/Lenovo/PycharmProjects/BJUT_dsc/data/images/parrow_svg.svg&quot;);
+}
+</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>12</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>  单程</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="to_3">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>50</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文中宋</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 10px;         /* 圆角 */
+    padding-right: 20px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 20px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 10px;                 /* 调整箭头的宽度 */
+    height: 10px;                /* 调整箭头的高度 */
+    image: url(&quot;C:/Users/Lenovo/PycharmProjects/BJUT_dsc/data/images/parrow_svg.svg&quot;);
+}
+</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>12</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>  经济</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="to_4">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>80</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文中宋</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 10px;         /* 圆角 */
+    padding-right: 20px;         /* 右侧填充，增加箭头部分的宽度 */
+}
+
+QComboBox::drop-down {
+    width: 20px;                  /* 增加下拉箭头的宽度 */
+    border-left: 2px solid #3498db; /* 左侧边框，与主边框保持一致 */
+    border-radius: 0px;          /* 不要给下拉箭头部分设置圆角，以便它显示 */
+}
+
+QComboBox::down-arrow {
+    width: 10px;                 /* 调整箭头的宽度 */
+    height: 10px;                /* 调整箭头的高度 */
+    image: url(&quot;C:/Users/Lenovo/PycharmProjects/BJUT_dsc/data/images/parrow_svg.svg&quot;);
+}
+</string>
+     </property>
+     <property name="maxVisibleItems">
+      <number>12</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>  1人</string>
+      </property>
+     </item>
+    </widget>
    </widget>
    <widget class="QLabel" name="wordmap">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>370</y>
-      <width>941</width>
-      <height>291</height>
+      <x>0</x>
+      <y>360</y>
+      <width>961</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="text">
@@ -256,7 +563,6 @@ QComboBox::down-arrow {
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

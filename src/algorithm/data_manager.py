@@ -108,8 +108,8 @@ class data_loader:
 
 
 if __name__ == "__main__":
-    loader = data_loader(share.directory)  # 替换为你的目录
-    loader.load_flights_info()  # 加载航班信息
+    loader = data_loader(share.directory)
+    loader.load_flights_info()
 
     # 输出第一个航班信息
     flight_info = loader.get_flight_info_single(3, 11, 1, 0)

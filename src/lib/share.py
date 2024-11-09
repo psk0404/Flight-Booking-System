@@ -5,4 +5,6 @@ class share:
     win_login_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\login.ui'
     querywindow_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\QueryWindow.ui'
     MainSyetem_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\MainSystem.ui'
+    BuyWindow_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\buy.ui'
+    UserInfo_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\info.ui'
 

@@ -1,7 +1,7 @@
-from path_find import *
+from src.algorithm.path_find import Graph
 from src.algorithm.data_manager import data_loader
 from src.lib.share import *
-from ceshi import *
+from src.algorithm.ceshi import find_valid_routes
 
 
 class Flight_Info:
@@ -130,5 +130,5 @@ if __name__ == "__main__":
     loader = data_loader(directory)  # 创建数据加载器实例
     loader.load_flights_info()  # 加载航班信息
 
-    info = Info(loader, 11, 3)  # 创建 Info 实例，并传入数据加载器和路径参数
-    info.outputs()  # 输出存储的航班信息
+    info = Info(loader, 4, 3)  # 创建 Info 实例，并传入数据加载器和路径参数
+    print(info.total)

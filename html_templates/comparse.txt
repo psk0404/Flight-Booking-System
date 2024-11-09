@@ -1,0 +1,32 @@
+<html lang="zh">
+<body>
+    <div style="width: 100%; padding: 20px; background-color: #f0f8ff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; box-sizing: border-box;">
+        <table cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; box-sizing: border-box;">
+            <!-- 第一行：出发时间、出发机场、到达时间、到达机场 -->
+            <tr>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">出发时间</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;">{departure_time}</td>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff;">出发机场</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;">{departure_airport}</td>
+            </tr>
+            <tr>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff;">到达时间</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;">{arrival_time}</td>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff;">到达机场</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;">{arrival_airport}</td>
+            </tr>
+            <!-- 第二行：飞行时长、机票价格、航班信息 -->
+            <tr>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff; border-top-left-radius: 10px;">飞行时长</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;">{duration}</td>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff;">机票价格</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;">¥{price}</td>
+            </tr>
+            <tr>
+                <td style="width: 25%; text-align: left; font-weight: bold; color: #333; background-color: #e6f7ff; border-bottom-left-radius: 10px;">航班信息</td>
+                <td style="width: 25%; text-align: center; background-color: #f8f8f8;" colspan="3">{flight_number}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

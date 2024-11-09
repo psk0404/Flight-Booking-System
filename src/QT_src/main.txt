@@ -1,0 +1,75 @@
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QVBoxLayout, QFrame, QScrollArea
+from PyQt5.uic import loadUi
+from PyQt5 import QtCore
+
+from src.lib.share import *
+
+
+class Mainsystem(QMainWindow):
+    def __init__(self):
+        super(Mainsystem, self).__init__()
+        self.ui = loadUi(share.MainSyetem_ui, self)
+
+        # 设置 ScrollArea 的布局
+        self.setup_scroll_area()
+
+    def setup_scroll_area(self):
+        # 创建一个垂直布局
+        layout = QVBoxLayout()
+
+        # 添加十个信息卡片
+        for i in range(10):
+            # 创建一个垂直布局，作为每个卡片的布局
+            card_layout = QVBoxLayout()
+
+            # 创建 QLabel 作为卡片的标题
+            label = QLabel(f"信息 {i + 1}")
+            label.setFont(QFont("Arial", 12))
+            label.setFrameShape(QFrame.Box)  # 给 label 添加边框，模拟卡片效果
+            label.setMargin(5)
+            label.setStyleSheet("background-color: #f0f0f0;")  # 设置背景颜色
+            label.setFixedHeight(100)  # 设置固定高度
+
+            # 创建 QPushButton，用于控制展开
+            button = QPushButton("展开/收起")
+            button.clicked.connect(lambda checked, lbl=label: self.toggle_expansion(lbl))
+
+            # 将按钮和 label 添加到同一个布局中
+            card_layout.addWidget(label)
+            card_layout.addWidget(button)
+
+            # 使用一个属性来存储当前卡片是否已经展开
+            label.expanded = False
+            label.initial_height = 100  # 初始高度
+            label.expanded_height = 200  # 展开后的高度
+
+            # 将卡片布局添加到主布局中
+            layout.addLayout(card_layout)
+
+        # 将布局设置到 ScrollArea 的 widget 上
+        self.ui.scrollArea.widget().setLayout(layout)
+        self.ui.scrollArea.setWidgetResizable(True)
+
+    def toggle_expansion(self, label):
+        # 根据卡片的当前状态，切换其展开/收起
+        if label.expanded:
+            self.expand_or_collapse_label(label, label.expanded_height, label.initial_height)
+            label.expanded = False
+        else:
+            self.expand_or_collapse_label(label, label.initial_height, label.expanded_height)
+            label.expanded = True
+
+    def expand_or_collapse_label(self, label, start_height, end_height):
+        # 直接改变高度，避免使用动画
+        label.setFixedHeight(end_height)
+
+
+if __name__ == "__main__":
+    import sys
+
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+    app = QApplication(sys.argv)
+    share.querywindow_ui = Mainsystem()
+    share.querywindow_ui.show()  # 显示窗口
+    sys.exit(app.exec_())  # 运行应用程序
