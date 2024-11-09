@@ -129,7 +129,7 @@
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>120</x>
       <y>200</y>
       <width>801</width>
       <height>431</height>
@@ -413,11 +413,11 @@ QComboBox::down-arrow {
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton1">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>570</y>
+      <x>30</x>
+      <y>560</y>
       <width>71</width>
       <height>51</height>
      </rect>
@@ -445,6 +445,38 @@ QComboBox::down-arrow {
      <string>BACK </string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>480</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    width: 200px;  /* 宽度较大 */
+    height: 50px;  /* 高度较小 */
+    border-radius: 25px;  /* 圆角设置为高度的一半，形成椭圆 */
+    background-color: white;  /* 背景颜色设置为白色 */
+    border: 3px solid blue;  /* 设置蓝色边框，边框宽度为3px */
+    color: black;  /* 文本颜色设置为黑色 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>INFO</string>
+    </property>
+   </widget>
    <zorder>background</zorder>
    <zorder>frame</zorder>
    <zorder>from</zorder>
@@ -455,6 +487,7 @@ QComboBox::down-arrow {
    <zorder>from_3</zorder>
    <zorder>from_4</zorder>
    <zorder>from_5</zorder>
+   <zorder>pushButton1</zorder>
    <zorder>pushButton</zorder>
   </widget>
   <action name="actionbanbenhao">
