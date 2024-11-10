@@ -84,25 +84,6 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="ft">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>56</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../data/images/ct_parrow.jpg</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
@@ -114,8 +95,10 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QFrame {
-    border: 4px solid #3498db;   /* 设置边框为4像素，颜色为深蓝色 */
-    border-radius: 10px;         /* 设置圆角半径，调整为较小的值 */
+    
+
+    background-color: transparent;
+
 }
 </string>
     </property>
@@ -125,6 +108,30 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>0</y>
+       <width>111</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    background-color: transparent;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../data/images/R1.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
@@ -427,7 +434,6 @@ QComboBox::down-arrow {
    <zorder>frame</zorder>
    <zorder>fromc</zorder>
    <zorder>toc</zorder>
-   <zorder>ft</zorder>
    <zorder>scrollArea</zorder>
    <zorder>pushButton1</zorder>
    <zorder>pushButton</zorder>
