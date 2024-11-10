@@ -99,7 +99,6 @@ class userInfo(QMainWindow):
 
         # 显示退票成功提示
         QMessageBox.information(self, "退票成功", "退票成功！")
-        self.close()  # 关闭页面
 
 
 if __name__ == "__main__":
