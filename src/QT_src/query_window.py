@@ -1,12 +1,11 @@
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.uic import loadUi
-from src.lib.share import *  # 共享数据
-from main_system import *  # 导入主页面类
-from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
-from PyQt5 import QtCore
+from src.lib.share import share
 
-class QueryWindow:
+class QueryWindow(QMainWindow):
     def __init__(self):
-        self.ui = loadUi(share.querywindow_ui)  # 加载查询UI文件
+        super(QueryWindow, self).__init__()
+        self.ui = loadUi(share.querywindow_ui, self)  # 加载查询UI文件
 
         # 城市名称到编号的映射
         self.city_mapping = {
@@ -41,19 +40,22 @@ class QueryWindow:
 
         if from_city_num is None or to_city_num is None:
             # 如果城市编号为空，弹出提示框
-            QMessageBox.warning(self.ui, "未找到航班", "抱歉！未找到该组航班，请检查城市选择。")
+            QMessageBox.warning(self, "未找到航班", "抱歉！未找到该组航班，请检查城市选择。")
             return
 
         # 如果选择有效的城市，执行查询操作
+        from src.QT_src.main_system import Mainsystem  # 动态导入以避免循环导入
         share.mainWin = Mainsystem(from_city_num, to_city_num)  # 创建主页面窗口实例
-        share.mainWin.ui.show()  # 显示主页面
-        self.ui.close()  # 关闭查询窗口
+        share.mainWin.show()  # 显示主页面
+        self.close()  # 关闭查询窗口
 
 # 用于独立测试时运行
 if __name__ == "__main__":
     import sys
+    from PyQt5.QtWidgets import QApplication
+    from PyQt5 import QtCore
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
     window = QueryWindow()
-    window.ui.show()
+    window.show()
     sys.exit(app.exec_())

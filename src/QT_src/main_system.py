@@ -1,13 +1,10 @@
-# src/QT_src/main_system.py
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QWidget, QSizePolicy
-from PyQt5.uic import loadUi
-from PyQt5 import QtCore
+from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QWidget, QSizePolicy
 from functools import partial
 import os
 from src.QT_src.Info import *
 from src.QT_src.buy import BuyWindow
-from src.lib.share import *
+from src.lib.share import share
 from src.algorithm.flight_find import Info
 from src.algorithm.data_manager import data_loader
 
@@ -41,6 +38,7 @@ class Mainsystem(QMainWindow):
         self.ui = loadUi(share.MainSyetem_ui, self)
         self.setup_scroll_area()
         self.ui.pushButton.clicked.connect(self.show_user_info)
+        self.ui.pushButton1.clicked.connect(self.switch_to_query_window)
 
     def setup_scroll_area(self):
         layout = QVBoxLayout()
@@ -133,6 +131,13 @@ class Mainsystem(QMainWindow):
         self.user_info_window = userInfo()
         self.user_info_window.show()
 
+    def switch_to_query_window(self):
+        # 创建 QueryWindow 窗口并显示
+        from src.QT_src.query_window import QueryWindow  # 动态导入以避免循环导入
+        share.queryWin = QueryWindow()
+        share.queryWin.show()
+        self.close()  # 关闭当前窗口
+
 class get:
     def __init__(self, a, b):
         self.loader = data_loader(share.directory)
@@ -142,8 +147,9 @@ class get:
 
 if __name__ == "__main__":
     import sys
+    from PyQt5 import QtCore
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
-    share.querywindow_ui = Mainsystem(3, 11)
-    share.querywindow_ui.show()
+    share.mainWin = Mainsystem(3, 11)
+    share.mainWin.show()
     sys.exit(app.exec_())
