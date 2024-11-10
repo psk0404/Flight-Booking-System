@@ -37,7 +37,7 @@
       <x>-1</x>
       <y>-1</y>
       <width>971</width>
-      <height>271</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="text">
@@ -54,7 +54,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>250</y>
+      <y>230</y>
       <width>811</width>
       <height>111</height>
      </rect>
@@ -110,7 +110,7 @@ QComboBox::down-arrow {
       <string>      出发地</string>
      </property>
      <property name="maxVisibleItems">
-      <number>19</number>
+      <number>12</number>
      </property>
      <property name="iconSize">
       <size>
@@ -390,16 +390,31 @@ QComboBox::down-arrow {
      <property name="font">
       <font>
        <family>Arial</family>
-       <pointsize>16</pointsize>
+       <pointsize>-1</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-    background-color: #ADD8E6;  /* 浅蓝色背景 */
-    border: none;                /* 去掉默认边框 */
+    border: 2px solid #1E3A5F;  /* 深蓝色边框 */
     border-radius: 15px;        /* 圆角 */
+    color: #333;                /* 文字颜色 */
+    font-size: 14px;            /* 字体大小 */
+    padding: 5px 10px;         /* 内边距 */
+    transition: background-color 0.3s, border-color 0.3s; /* 平滑过渡效果 */
+}
+
+QPushButton:hover {
+    background-color: #1E3A5F;  /* 深蓝色背景 */
+    color: white;               /* 鼠标悬停时字体变为白色 */
+    border-color: #1A2D44;      /* 鼠标悬停时边框颜色变为更深的蓝色 */
+}
+
+QPushButton:pressed {
+    background-color: #1A2D44;  /* 按下时的颜色 */
+    color: white;               /* 字体保持白色 */
+    border-color: #1A2D44;      /* 按下时边框颜色 */
 }
 </string>
      </property>
@@ -547,16 +562,16 @@ QComboBox::down-arrow {
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>360</y>
+      <y>340</y>
       <width>961</width>
-      <height>321</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../data/images/background2.png</pixmap>
+     <pixmap>../data/images/background2_0.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

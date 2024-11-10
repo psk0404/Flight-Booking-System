@@ -10,5 +10,6 @@ class share:
     MainSyetem_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\MainSystem.ui'
     BuyWindow_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\buy.ui'
     UserInfo_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\info.ui'
-    # src/lib/share.py
+
     user_flights = []
+    num = 0

@@ -8,6 +8,7 @@ from src.lib.share import share
 from src.algorithm.flight_find import Info
 from src.algorithm.data_manager import data_loader
 
+
 class MyLabel(QLabel):
     def __init__(self, *args, **kwargs):
         super(MyLabel, self).__init__(*args, **kwargs)
@@ -32,13 +33,24 @@ class MyLabel(QLabel):
         """)
 
 class Mainsystem(QMainWindow):
-    def __init__(self, a, b):
+    def __init__(self, a, b, from_city_name, to_city_name):
         super(Mainsystem, self).__init__()
         self.got = get(a, b)
         self.ui = loadUi(share.MainSyetem_ui, self)
         self.setup_scroll_area()
-        self.ui.pushButton.clicked.connect(self.show_user_info)
-        self.ui.pushButton1.clicked.connect(self.switch_to_query_window)
+        self.ui.pushButton.clicked.connect(self.show_info)
+        self.ui.pushButton1.clicked.connect(self.switch)
+        self.ui.pushButton2.clicked.connect(self.exit)
+
+        # 设置 QLabel 显示城市名称
+        self.ui.fromc.setText(from_city_name)
+        self.ui.toc.setText(to_city_name)
+
+        self.ui.fromc.setFont(QFont("Segoe UI", 18, QFont.Bold))
+        self.ui.fromc.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.ui.toc.setFont(QFont("Segoe UI", 18, QFont.Bold))
+        self.ui.toc.setAlignment(QtCore.Qt.AlignCenter)
 
     def setup_scroll_area(self):
         layout = QVBoxLayout()
@@ -61,7 +73,7 @@ class Mainsystem(QMainWindow):
             expand_button = QPushButton("展开")
             expand_button.clicked.connect(partial(self.toggle_expansion, label, expand_button))
             buy_button = QPushButton("购买")
-            buy_button.clicked.connect(partial(self.buy_ticket, flights))
+            buy_button.clicked.connect(partial(self.buy, flights))
             button_layout.addWidget(expand_button)
             button_layout.addWidget(buy_button)
             card_layout.addWidget(label)
@@ -71,24 +83,26 @@ class Mainsystem(QMainWindow):
         self.ui.scrollArea.widget().setLayout(layout)
         self.ui.scrollArea.setWidgetResizable(True)
 
+
+
     def toggle_expansion(self, label, button):
         if not label.expanded:
-            self.expand_or_collapse_label(label, label.expanded_height)
+            self.ec_label(label, label.expanded_height)
             label.setText(label.original_text)
             button.setText("收起")
             label.expanded = True
         else:
-            self.expand_or_collapse_label(label, 100)
+            self.ec_label(label, 100)
             label.setText(label.simplified_text)
             button.setText("展开")
             label.expanded = False
             label.adjustSize()
             label.setFixedHeight(100)
 
-    def expand_or_collapse_label(self, label, end_height):
+    def ec_label(self, label, end_height):
         label.setFixedHeight(end_height)
 
-    def buy_ticket(self, flights):
+    def buy(self, flights):
         self.buy_window = BuyWindow(flights)
         self.buy_window.show()
 
@@ -127,16 +141,18 @@ class Mainsystem(QMainWindow):
             )
         return flight_info
 
-    def show_user_info(self):
+    def show_info(self):
         self.user_info_window = userInfo()
         self.user_info_window.show()
 
-    def switch_to_query_window(self):
-        # 创建 QueryWindow 窗口并显示
-        from src.QT_src.query_window import QueryWindow  # 动态导入以避免循环导入
+    def switch(self):
+        from src.QT_src.query_window import QueryWindow
         share.queryWin = QueryWindow()
         share.queryWin.show()
-        self.close()  # 关闭当前窗口
+        self.close()
+
+    def exit(self):
+        self.close()
 
 class get:
     def __init__(self, a, b):
@@ -150,6 +166,6 @@ if __name__ == "__main__":
     from PyQt5 import QtCore
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
-    share.mainWin = Mainsystem(3, 11)
+    share.mainWin = Mainsystem(3, 11, '北京', '上海')
     share.mainWin.show()
     sys.exit(app.exec_())

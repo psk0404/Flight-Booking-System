@@ -1,7 +1,7 @@
 from src.algorithm.path_find import Graph
 from src.algorithm.data_manager import data_loader
 from src.lib.share import *
-from src.algorithm.ceshi import find_valid_routes
+from src.algorithm.search import recursion
 
 
 class Flight_Info:
@@ -95,7 +95,7 @@ class Info:
 
         has_empty_list = any(len(sublist) == 0 for sublist in cunchures2)
         if not has_empty_list:
-            result = find_valid_routes(cunchures2)
+            result = recursion(cunchures2)
             # if result:
             #     print(res)
             thisinfo = []

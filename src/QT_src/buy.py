@@ -19,6 +19,7 @@ class BuyWindow(QMainWindow):
         if phonenum == password2 == password == '0':
             QMessageBox.information(self, "购买成功", "购买成功！")
             share.user_flights.append(self.flights)
+            share.num += 1
             self.close()
         else:
             QMessageBox.warning(self, "购买失败", "存在错误！")

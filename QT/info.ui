@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>530</height>
+    <height>580</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,9 +26,9 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>180</y>
+      <y>160</y>
       <width>441</width>
-      <height>321</height>
+      <height>390</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -58,7 +58,7 @@ QScrollArea &gt; QWidget {
        <x>0</x>
        <y>0</y>
        <width>417</width>
-       <height>297</height>
+       <height>366</height>
       </rect>
      </property>
     </widget>

@@ -1,7 +1,5 @@
-from PyQt5.QtWidgets import QApplication
-from login_check import *  # 登录相关的逻辑
-from src.lib.share import *  # 共享数据
-from main_system import *  # 主页面的逻辑
+from login_check import *
+from main_system import *
 
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
 app = QApplication([])

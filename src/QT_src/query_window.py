@@ -31,8 +31,8 @@ class QueryWindow(QMainWindow):
         self.ui.pushButton.clicked.connect(self.onQuery)
 
     def onQuery(self):
-        from_city = self.ui.fromcity.currentText().strip()  # 去除 'From' QComboBox 的选中文本两侧空格
-        to_city = self.ui.tocity.currentText().strip()  # 去除 'To' QComboBox 的选中文本两侧空格
+        from_city = self.ui.fromcity.currentText().strip()
+        to_city = self.ui.tocity.currentText().strip()
 
         # 获取城市编号
         from_city_num = self.city_mapping.get(from_city)
@@ -43,11 +43,16 @@ class QueryWindow(QMainWindow):
             QMessageBox.warning(self, "未找到航班", "抱歉！未找到该组航班，请检查城市选择。")
             return
 
+        # 将城市名称传递给 Mainsystem
+        from_city_name = from_city
+        to_city_name = to_city
+
         # 如果选择有效的城市，执行查询操作
         from src.QT_src.main_system import Mainsystem  # 动态导入以避免循环导入
-        share.mainWin = Mainsystem(from_city_num, to_city_num)  # 创建主页面窗口实例
+        share.mainWin = Mainsystem(from_city_num, to_city_num, from_city_name, to_city_name)  # 创建主页面窗口实例
         share.mainWin.show()  # 显示主页面
         self.close()  # 关闭查询窗口
+
 
 # 用于独立测试时运行
 if __name__ == "__main__":

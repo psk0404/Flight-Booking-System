@@ -1,11 +1,11 @@
-def find_valid_routes(segments, path=[], index=0):
+def recursion(segments, path=[], index=0):
     if index == len(segments):  # 如果到达最后一段，返回当前路径
         return [path]
 
     valid_routes = []
     for flight in segments[index]:
         if not path or (path[-1][-1] == flight[-2]):  # 检查匹配条件
-            valid_routes += find_valid_routes(segments, path + [flight], index + 1)  # 递归调用
+            valid_routes += recursion(segments, path + [flight], index + 1)  # 递归调用
 
     return valid_routes
 
@@ -19,6 +19,6 @@ if __name__ == "__main__":
     ]
 
     # 调用函数并打印结果
-    result = find_valid_routes(segments)
+    result = recursion(segments)
     for route in result:
         print(route)
