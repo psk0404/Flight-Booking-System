@@ -1,7 +1,9 @@
 import random
-from PyQt5.QtCore import Qt
+
+from IPython.external.qt_for_kernel import QtCore
 from PyQt5.QtGui import QPainter, QPen, QPixmap, QColor
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, QMessageBox, QLabel
+from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, \
+    QMessageBox, QLabel, QApplication
 from PyQt5.uic import loadUi
 from boltons.funcutils import partial
 from src.QT_src.change import changeWindow
@@ -24,7 +26,7 @@ class userInfo(QMainWindow):
             [15, 841, 626],
             [16, 745, 566]
         ]
-        self.view_route(share.condition)
+
 
     def setup_user_info(self):
         layout = QVBoxLayout()
@@ -62,7 +64,7 @@ class userInfo(QMainWindow):
         self.ui.scrollArea.setWidgetResizable(True)
 
     def create_flight_table(self, flights, user_idx):
-        table = QTableWidget(len(flights), 9)  # 修改列数，增加一列用于放按钮
+        table = QTableWidget(len(flights), 9)
         table.setHorizontalHeaderLabels(
             ["信息编号", "出发时间", "出发机场", "飞行时间", "到达时间", "到达机场", "航班信息", "票价", "操作"])
 
@@ -74,7 +76,7 @@ class userInfo(QMainWindow):
         table.setColumnWidth(5, 120)
         table.setColumnWidth(6, 120)
         table.setColumnWidth(7, 100)
-        table.setColumnWidth(8, 80)  # 设置按钮列的宽度
+        table.setColumnWidth(8, 80)
 
         table.setFixedHeight(160)
 
@@ -95,7 +97,7 @@ class userInfo(QMainWindow):
 
             # 创建航线按钮并放到最后一列
             route_button = QPushButton("航线")
-            route_button.clicked.connect(partial(self.view_route))
+            route_button.clicked.connect(partial(self.view_route, user_idx, row))
 
             table.setCellWidget(row, 8, route_button)
 
@@ -117,13 +119,19 @@ class userInfo(QMainWindow):
         share.user_flights[user_idx] = flights
         self.setup_user_info()
 
-    def view_route(self, condition):
-        if condition == 0:
-            self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\background2.png')
-        elif condition == 1:
-            self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\cmap.png')
+    def view_route(self, user_idx, row):
+        a = share.line_flights[user_idx][row][0]
+        b = share.line_flights[user_idx][row][1]
 
-            self.printmap(0, 0, 1250, 1000)
+        self.corw(a, b)
+
+        if share.condition == 1:
+            self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\background2.png')
+        elif share.condition == 2:
+            self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\cmap.png')
+            x1, y1 = self.cntchina(a)
+            x2, y2 = self.cntchina(b)
+            self.printmap(x1, y1, x2, y2)
 
         # show picture
         self.ui.map.setPixmap(self.pixmap)
@@ -141,3 +149,26 @@ class userInfo(QMainWindow):
         painter.drawLine(x1, y1, x2, y2)
         # 结束绘制
         painter.end()
+
+    def corw(self, a, b):
+        cnt = 0
+        for i in range(len(self.china_map)):
+            if a == self.china_map[i][0] or b == self.china_map[i][0]:
+                cnt += 1
+        if cnt == 1:
+            share.condition = 1
+        else:
+            share.condition = 2
+    def cntchina(self, x):
+        if x <= 5:
+            return self.china_map[x - 3][1], self.china_map[x - 3][2]
+        else:
+            return self.china_map[x - 6][1], self.china_map[x - 6][2]
+
+if __name__ == "__main__":
+    import sys
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+    app = QApplication(sys.argv)
+    window = userInfo()
+    window.show()
+    sys.exit(app.exec_())

@@ -10,6 +10,7 @@ class share:
     UserInfo_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\info.ui'
     change_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\change.ui'
     num = 0
-    condition = 1
-    num_flights = []
+    condition = 0
+    num_flights = []  # 改签用
     user_flights = []
+    line_flights = []

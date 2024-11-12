@@ -61,12 +61,13 @@ class Mainsystem(QMainWindow):
         layout = QVBoxLayout()
         for i in range(len(self.got.all)):
             flights = []
+            line_flights = []
             for j in range(len(self.got.all[i])):
                 num0 = self.got.all[i][j][0]
                 num1 = self.got.all[i][j][1]
                 num2 = self.got.all[i][j][2]
                 flights.append(self.got.loader.get_flight_info_all(num0, num1, num2))
-
+                line_flights.append([num0, num1])
             time, price = self.calculate(flights)
             self.sort.append([price, time, i])
 
@@ -82,7 +83,7 @@ class Mainsystem(QMainWindow):
             expand_button = QPushButton("展开")
             expand_button.clicked.connect(partial(self.toggle_expansion, label, expand_button))
             buy_button = QPushButton("购买")
-            buy_button.clicked.connect(partial(self.buy, flights, self.got.all))
+            buy_button.clicked.connect(partial(self.buy, flights, self.got.all, line_flights))
             button_layout.addWidget(expand_button)
             button_layout.addWidget(buy_button)
             card_layout.addWidget(label)
@@ -160,7 +161,6 @@ class Mainsystem(QMainWindow):
         for i in range(len(self.sort)):
             flights = []
             k = self.sort[i][2]
-
             # 获取航班数据
             for j in range(len(self.got.all[k])):
                 num0 = self.got.all[k][j][0]
@@ -216,8 +216,8 @@ class Mainsystem(QMainWindow):
     def ec_label(self, label, end_height):
         label.setFixedHeight(end_height)
 
-    def buy(self, flights, num_flights):
-        self.buy_window = BuyWindow(flights, num_flights)
+    def buy(self, flights, num_flights, line_flights):
+        self.buy_window = BuyWindow(flights, num_flights, line_flights)
         self.buy_window.show()
 
     def format_flight_info(self, flights, expanded=False):

@@ -5,11 +5,12 @@ from PyQt5 import QtCore
 from src.lib.share import *
 
 class BuyWindow(QMainWindow):
-    def __init__(self, flights, numflights):
+    def __init__(self, flights, numflights, linefights):
         super().__init__()
         self.ui = loadUi(share.BuyWindow_ui, self)
         self.flights = flights
         self.numflights = numflights
+        self.lineflights = linefights
         self.pushButton_2.clicked.connect(self.confirm_purchase)
         self.pushButton_3.clicked.connect(self.cancel_purchase)
 
@@ -21,6 +22,7 @@ class BuyWindow(QMainWindow):
             QMessageBox.information(self, "购买成功", "购买成功！")
             share.user_flights.append(self.flights)
             share.num_flights.append(self.numflights)
+            share.line_flights.append(self.lineflights)
             share.num += 1
             self.close()
         else:
