@@ -27,17 +27,17 @@ class userInfo(QMainWindow):
             [16, 745, 566]
         ]
 
-
     def setup_user_info(self):
-        layout = QVBoxLayout()
-        widgets_to_remove = []
+        layout = QVBoxLayout(self.ui.scrollArea.widget())
+        self.ui.scrollArea.widget().setLayout(layout)
 
-        for widget in self.ui.scrollArea.widget().findChildren(QWidget):
-            widgets_to_remove.append(widget)
+        # 清空原有的布局内容
+        for i in reversed(range(layout.count())):
+            widget = layout.itemAt(i).widget()
+            if widget is not None:
+                widget.setParent(None)
 
-        for widget in widgets_to_remove:
-            widget.deleteLater()
-
+        # 遍历用户航班信息并添加至布局
         for idx, flights in enumerate(share.user_flights):
             if flights and any(flight is not None for flight in flights):
                 widget = QWidget()
@@ -49,7 +49,7 @@ class userInfo(QMainWindow):
                 button_layout = QHBoxLayout()
 
                 refund_button = QPushButton("退票")
-                refund_button.clicked.connect(partial(self.refund_ticket_group, idx))
+                refund_button.clicked.connect(partial(self.refund_ticket_group, idx, widget))
                 button_layout.addWidget(refund_button)
 
                 change_button = QPushButton("改签")
@@ -57,11 +57,18 @@ class userInfo(QMainWindow):
                 button_layout.addWidget(change_button)
 
                 card_layout.addLayout(button_layout)
-
                 layout.addWidget(widget)
 
-        self.ui.scrollArea.widget().setLayout(layout)
         self.ui.scrollArea.setWidgetResizable(True)
+
+    def refund_ticket_group(self, user_idx, widget):
+        # 将对应的航班数据设为 None 以表示已退票
+        share.user_flights[user_idx] = [None] * len(share.user_flights[user_idx])
+
+        # 从 scrollArea 布局中移除该航班卡片
+        widget.setParent(None)
+
+        QMessageBox.information(self, "退票成功", "航班已退票！")
 
     def create_flight_table(self, flights, user_idx):
         table = QTableWidget(len(flights), 9)
@@ -105,10 +112,7 @@ class userInfo(QMainWindow):
 
         return table
 
-    def refund_ticket_group(self, user_idx):
-        share.user_flights[user_idx] = [None] * len(share.user_flights[user_idx])
-        self.setup_user_info()
-        QMessageBox.information(self, "退票成功", "航班已退票！")
+
 
     def change_ticket_group(self, user_idx):
         self.close()
