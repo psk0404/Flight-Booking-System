@@ -130,5 +130,5 @@ if __name__ == "__main__":
     loader = data_loader(directory)  # 创建数据加载器实例
     loader.load_flights_info()  # 加载航班信息
 
-    info = Info(loader, 7, 6)  # 创建 Info 实例，并传入数据加载器和路径参数
+    info = Info(loader, 1, 8)  # 创建 Info 实例，并传入数据加载器和路径参数
     print(info.total)

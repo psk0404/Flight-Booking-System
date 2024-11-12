@@ -4,7 +4,7 @@ from IPython.external.qt_for_kernel import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QPen, QPixmap, QColor
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, \
-    QMessageBox, QLabel, QApplication
+    QMessageBox, QApplication
 from PyQt5.uic import loadUi
 from boltons.funcutils import partial
 from src.QT_src.change import changeWindow
@@ -43,13 +43,11 @@ class userInfo(QMainWindow):
         layout = QVBoxLayout(self.ui.scrollArea.widget())
         self.ui.scrollArea.widget().setLayout(layout)
 
-        # 清空原有的布局内容
         for i in reversed(range(layout.count())):
             widget = layout.itemAt(i).widget()
             if widget is not None:
                 widget.setParent(None)
 
-        # 遍历用户航班信息并添加至布局
         for idx, flights in enumerate(share.user_flights):
             if flights and any(flight is not None for flight in flights):
                 widget = QWidget()
@@ -74,10 +72,8 @@ class userInfo(QMainWindow):
         self.ui.scrollArea.setWidgetResizable(True)
 
     def refund_ticket_group(self, user_idx, widget):
-        # 将对应的航班数据设为 None 以表示已退票
         share.user_flights[user_idx] = [None] * len(share.user_flights[user_idx])
 
-        # 从 scrollArea 布局中移除该航班卡片
         widget.setParent(None)
 
         QMessageBox.information(self, "退票成功", "航班已退票！")
@@ -114,7 +110,6 @@ class userInfo(QMainWindow):
             table.setItem(row, 6, QTableWidgetItem(flight_number))
             table.setItem(row, 7, QTableWidgetItem(f"¥{price}"))
 
-            # 创建航线按钮并放到最后一列
             route_button = QPushButton("航线")
             route_button.clicked.connect(partial(self.view_route, user_idx, row))
 
@@ -123,8 +118,6 @@ class userInfo(QMainWindow):
             table.setRowHeight(row, row_height)
 
         return table
-
-
 
     def change_ticket_group(self, user_idx):
         self.close()
@@ -158,37 +151,29 @@ class userInfo(QMainWindow):
         self.ui.map.setScaledContents(True)
 
     def printmap(self, x1, y1, x2, y2):
-        # 创建 QPainter 对象
         painter = QPainter(self.pixmap)
 
-        # 设置画线的画笔颜色和宽度
-        line_pen = QPen(QColor(0, 0, 255))  # 蓝色
-        line_pen.setWidth(5)  # 设置线宽
-        line_pen.setStyle(Qt.DashLine)  # 设置线条样式为虚线
+        line_pen = QPen(QColor(0, 0, 255))
+        line_pen.setWidth(5)
+        line_pen.setStyle(Qt.DashLine)
         painter.setPen(line_pen)
 
-        # 绘制出发点和抵达点之间的虚线
         painter.drawLine(x1, y1, x2, y2)
 
-        # 设置画出发点圆点的画笔和颜色
-        point_pen = QPen(QColor(255, 0, 0))  # 红色
-        point_pen.setWidth(8)  # 设置圆点线宽（控制圆点边缘厚度）
+        point_pen = QPen(QColor(255, 0, 0))
+        point_pen.setWidth(8)
         painter.setPen(point_pen)
-        painter.setBrush(QColor(255, 0, 0))  # 设置填充颜色为红色
+        painter.setBrush(QColor(255, 0, 0))
 
-        # 绘制出发点的小圆点，半径略大于线路宽度
         small_radius = 10
         painter.drawEllipse(x1 - small_radius // 2, y1 - small_radius // 2, small_radius, small_radius)
 
-        # 设置画抵达点圆点的画笔和颜色
         painter.setPen(point_pen)
-        painter.setBrush(QColor(255, 0, 0))  # 设置填充颜色为红色
+        painter.setBrush(QColor(255, 0, 0))
 
-        # 绘制抵达点的大圆点，半径略大于线路宽度
         large_radius = 20
         painter.drawEllipse(x2 - large_radius // 2, y2 - large_radius // 2, large_radius, large_radius)
 
-        # 结束绘制
         painter.end()
 
     def corw(self, a, b):

@@ -1,5 +1,5 @@
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import  QFrame, QSizePolicy
+from PyQt5.QtWidgets import QFrame, QSizePolicy, QLabel
 from functools import partial
 import os
 from src.QT_src.Info import *
@@ -110,34 +110,26 @@ class Mainsystem(QMainWindow):
     def sort_flights0(self):
         # 获取用户选择的排序方式
         price_sort = self.ui.from_2.currentText().strip() == "升序价格"
-        time_sort = self.ui.from_3.currentText().strip() == "升序时间"
 
         # 排序根据价格
         if price_sort:
             self.sort.sort(key=lambda x: x[0])  # 按价格升序
         else:
             self.sort.sort(key=lambda x: x[0], reverse=True)  # 按价格降序
-
         # 清空现有内容
         self.clear_scroll_area()
-
         # 更新显示
         self.update_scroll_area()  # 重新渲染排序后的数据
 
     def sort_flights1(self):
-        # 获取用户选择的排序方式
-
         time_sort = self.ui.from_3.currentText().strip() == "升序时间"
-
         # 排序根据价格
         if time_sort:
             self.sort.sort(key=lambda x: x[1])
         else:
             self.sort.sort(key=lambda x: x[1], reverse=True)
-
         # 清空现有内容
         self.clear_scroll_area()
-
         # 更新显示
         self.update_scroll_area()  # 重新渲染排序后的数据
 
@@ -157,9 +149,9 @@ class Mainsystem(QMainWindow):
         # 创建新的布局
         layout1 = QVBoxLayout()
 
-        # 根据排序后的数据重新创建widget
         for i in range(len(self.sort)):
             flights = []
+            line_flights = []
             k = self.sort[i][2]
             # 获取航班数据
             for j in range(len(self.got.all[k])):
@@ -167,6 +159,7 @@ class Mainsystem(QMainWindow):
                 num1 = self.got.all[k][j][1]
                 num2 = self.got.all[k][j][2]
                 flights.append(self.got.loader.get_flight_info_all(num0, num1, num2))
+                line_flights.append([num0, num1])
 
             # 创建新的widget并添加到布局
             widget = QWidget()
@@ -183,7 +176,8 @@ class Mainsystem(QMainWindow):
             expand_button = QPushButton("展开")
             expand_button.clicked.connect(partial(self.toggle_expansion, label, expand_button))
             buy_button = QPushButton("购买")
-            buy_button.clicked.connect(partial(self.buy, flights))
+            buy_button.clicked.connect(partial(self.buy, flights, self.got.all, line_flights))
+
             button_layout.addWidget(expand_button)
             button_layout.addWidget(buy_button)
 

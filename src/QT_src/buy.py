@@ -24,6 +24,9 @@ class BuyWindow(QMainWindow):
             share.num_flights.append(self.numflights)
             share.line_flights.append(self.lineflights)
             share.num += 1
+            # print(self.flights)
+            # print(self.numflights)
+            # print(self.lineflights)
             self.close()
         else:
             QMessageBox.warning(self, "购买失败", "存在错误！")

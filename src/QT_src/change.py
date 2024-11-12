@@ -28,11 +28,13 @@ class changeWindow(QMainWindow):
 
         for i in range(len(self.num_flight)):
             flight_temp = []
+            line_flights = []
             for j in range(len(self.num_flight[i])):
                 num0 = self.num_flight[i][j][0]
                 num1 = self.num_flight[i][j][1]
                 num2 = self.num_flight[i][j][2]
                 flight_temp.append(self.loader.get_flight_info_all(num0, num1, num2))
+                line_flights.append([num0, num1])
             flightss.append(flight_temp)
 
         for idx, flights in enumerate(flightss):
@@ -46,7 +48,7 @@ class changeWindow(QMainWindow):
                 button_layout = QHBoxLayout()
 
                 change_button = QPushButton("确认改签")
-                change_button.clicked.connect(partial(self.change_ticket_group, idx, flights))
+                change_button.clicked.connect(partial(self.change_ticket_group, idx, flights, line_flights))
                 button_layout.addWidget(change_button)
 
                 card_layout.addLayout(button_layout)
@@ -89,9 +91,10 @@ class changeWindow(QMainWindow):
 
         return table
 
-    def change_ticket_group(self, idx, flights):
+    def change_ticket_group(self, idx, flights, line_flights):
         share.user_flights[self.idx] = flights
+        share.line_flights[self.idx] = line_flights
         if self.parent:
             self.parent.update_flight_info(self.idx, flights)
 
-        QMessageBox.information(self, "改签成功", f"已改签 {idx} 航班！")
+        QMessageBox.information(self, "改签成功", f"已改签 {idx + 1} 航班！")
