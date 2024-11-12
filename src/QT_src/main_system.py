@@ -1,5 +1,5 @@
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QWidget, QSizePolicy, QComboBox
+from PyQt5.QtWidgets import  QFrame, QSizePolicy
 from functools import partial
 import os
 from src.QT_src.Info import *
