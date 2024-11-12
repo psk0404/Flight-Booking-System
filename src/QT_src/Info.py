@@ -1,6 +1,7 @@
 import random
 
 from IPython.external.qt_for_kernel import QtCore
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QPen, QPixmap, QColor
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, \
     QMessageBox, QLabel, QApplication
@@ -25,6 +26,17 @@ class userInfo(QMainWindow):
             [14, 313, 301],
             [15, 841, 626],
             [16, 745, 566]
+        ]
+        self.world_map =[
+            [1, 950, 225],
+            [2, 1000, 210],
+            [5, 1640, 245],
+            [6, 1700, 300],
+            [7, 320, 310],
+            [8, 1500, 400],
+            [11, 1610, 310],
+            [12, 1570, 350],
+            [13, 1640, 285]
         ]
 
     def setup_user_info(self):
@@ -131,6 +143,10 @@ class userInfo(QMainWindow):
 
         if share.condition == 1:
             self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\background2.png')
+            x1, y1 = self.cntworld(a)
+            x2, y2 = self.cntworld(b)
+            self.printmap(x1, y1, x2, y2)
+
         elif share.condition == 2:
             self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\cmap.png')
             x1, y1 = self.cntchina(a)
@@ -144,13 +160,34 @@ class userInfo(QMainWindow):
     def printmap(self, x1, y1, x2, y2):
         # 创建 QPainter 对象
         painter = QPainter(self.pixmap)
-        # 设置画笔，使用 QColor 来设置颜色
-        pen = QPen(QColor(0, 0, 255))  # 这里用 QColor(0, 0, 255) 表示蓝色
-        pen.setWidth(5)  # 设置线宽
 
-        painter.setPen(pen)
-        # 绘制线条
+        # 设置画线的画笔颜色和宽度
+        line_pen = QPen(QColor(0, 0, 255))  # 蓝色
+        line_pen.setWidth(5)  # 设置线宽
+        line_pen.setStyle(Qt.DashLine)  # 设置线条样式为虚线
+        painter.setPen(line_pen)
+
+        # 绘制出发点和抵达点之间的虚线
         painter.drawLine(x1, y1, x2, y2)
+
+        # 设置画出发点圆点的画笔和颜色
+        point_pen = QPen(QColor(255, 0, 0))  # 红色
+        point_pen.setWidth(8)  # 设置圆点线宽（控制圆点边缘厚度）
+        painter.setPen(point_pen)
+        painter.setBrush(QColor(255, 0, 0))  # 设置填充颜色为红色
+
+        # 绘制出发点的小圆点，半径略大于线路宽度
+        small_radius = 10
+        painter.drawEllipse(x1 - small_radius // 2, y1 - small_radius // 2, small_radius, small_radius)
+
+        # 设置画抵达点圆点的画笔和颜色
+        painter.setPen(point_pen)
+        painter.setBrush(QColor(255, 0, 0))  # 设置填充颜色为红色
+
+        # 绘制抵达点的大圆点，半径略大于线路宽度
+        large_radius = 20
+        painter.drawEllipse(x2 - large_radius // 2, y2 - large_radius // 2, large_radius, large_radius)
+
         # 结束绘制
         painter.end()
 
@@ -159,15 +196,27 @@ class userInfo(QMainWindow):
         for i in range(len(self.china_map)):
             if a == self.china_map[i][0] or b == self.china_map[i][0]:
                 cnt += 1
-        if cnt == 1:
-            share.condition = 1
-        else:
+        if cnt == 2:
             share.condition = 2
+        else:
+            share.condition = 1
+
+
     def cntchina(self, x):
         if x <= 5:
             return self.china_map[x - 3][1], self.china_map[x - 3][2]
-        else:
+        elif 5 < x <= 12:
             return self.china_map[x - 6][1], self.china_map[x - 6][2]
+        elif x > 12:
+            return self.china_map[x - 7][1], self.china_map[x - 7][2]
+
+    def cntworld(self, x):
+        if x <= 2:
+            return self.world_map[x - 1][1], self.world_map[x - 1][2]
+        elif 5 <= x <= 8:
+            return self.world_map[x - 3][1], self.world_map[x - 3][2]
+        elif 11 <= x <= 13:
+            return self.world_map[x - 5][1], self.world_map[x - 5][2]
 
 if __name__ == "__main__":
     import sys

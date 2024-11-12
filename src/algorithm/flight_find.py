@@ -66,6 +66,7 @@ class Info:
                             for f in current_flights:
                                 dep_time = f[0]
                                 arr_time = f[3]
+
                                 a1, a2 = dep_time.hour, dep_time.minute
                                 b1, b2 = arr_time.hour, arr_time.minute
                                 example = [60 * a1 + a2, 60 * b1 + b2]
@@ -91,13 +92,12 @@ class Info:
                 for k in range(len(total_flight[i + 1])):
                     if total_flight[i + 1][k][0] - total_flight[i][j][1] >= 60:
                         cunchures1.append([i, i + 1, j, k])
-            cunchures2.append(cunchures1)  # 将当前的 cunchures1 添加到 cunchures2
+            cunchures2.append(cunchures1)
 
         has_empty_list = any(len(sublist) == 0 for sublist in cunchures2)
         if not has_empty_list:
             result = recursion(cunchures2)
-            # if result:
-            #     print(res)
+
             thisinfo = []
             for route in result:
                 for i in range(len(route)):
@@ -130,5 +130,5 @@ if __name__ == "__main__":
     loader = data_loader(directory)  # 创建数据加载器实例
     loader.load_flights_info()  # 加载航班信息
 
-    info = Info(loader, 4, 3)  # 创建 Info 实例，并传入数据加载器和路径参数
+    info = Info(loader, 7, 6)  # 创建 Info 实例，并传入数据加载器和路径参数
     print(info.total)
