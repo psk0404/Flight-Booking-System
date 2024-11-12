@@ -5,10 +5,11 @@ from PyQt5 import QtCore
 from src.lib.share import *
 
 class BuyWindow(QMainWindow):
-    def __init__(self, flights):
+    def __init__(self, flights, numflights):
         super().__init__()
         self.ui = loadUi(share.BuyWindow_ui, self)
         self.flights = flights
+        self.numflights = numflights
         self.pushButton_2.clicked.connect(self.confirm_purchase)
         self.pushButton_3.clicked.connect(self.cancel_purchase)
 
@@ -19,6 +20,7 @@ class BuyWindow(QMainWindow):
         if phonenum == password2 == password == '0':
             QMessageBox.information(self, "购买成功", "购买成功！")
             share.user_flights.append(self.flights)
+            share.num_flights.append(self.numflights)
             share.num += 1
             self.close()
         else:
@@ -31,6 +33,6 @@ if __name__ == "__main__":
     import sys
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
-    window = BuyWindow([])
+    window = BuyWindow()
     window.show()
     sys.exit(app.exec_())

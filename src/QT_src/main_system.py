@@ -59,7 +59,6 @@ class Mainsystem(QMainWindow):
 
     def setup_scroll_area(self):
         layout = QVBoxLayout()
-
         for i in range(len(self.got.all)):
             flights = []
             for j in range(len(self.got.all[i])):
@@ -83,7 +82,7 @@ class Mainsystem(QMainWindow):
             expand_button = QPushButton("展开")
             expand_button.clicked.connect(partial(self.toggle_expansion, label, expand_button))
             buy_button = QPushButton("购买")
-            buy_button.clicked.connect(partial(self.buy, flights))
+            buy_button.clicked.connect(partial(self.buy, flights, self.got.all))
             button_layout.addWidget(expand_button)
             button_layout.addWidget(buy_button)
             card_layout.addWidget(label)
@@ -217,8 +216,8 @@ class Mainsystem(QMainWindow):
     def ec_label(self, label, end_height):
         label.setFixedHeight(end_height)
 
-    def buy(self, flights):
-        self.buy_window = BuyWindow(flights)
+    def buy(self, flights, num_flights):
+        self.buy_window = BuyWindow(flights, num_flights)
         self.buy_window.show()
 
     def format_flight_info(self, flights, expanded=False):

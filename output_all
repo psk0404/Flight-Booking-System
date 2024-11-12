@@ -238,3 +238,262 @@ if __name__ == "__main__":
     info.sort()  # 排序路径
     info.find()  # 输出路径及其航班信息
     # info.outputs()
+
+
+    from IPython.external.qt_for_kernel import QtCore
+from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtCore import QTimer, QPointF, Qt
+from PyQt5.QtGui import QPixmap, QPainter, QPen, QColor
+import sys
+import math
+
+class FlightMap(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setGeometry(100, 100, 1600, 800)
+        self.setWindowTitle("动态航线显示")
+
+        # 加载地图图片
+        self.pixmap = QPixmap(r"C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\background2.png")
+
+        # 设置航线起点和终点
+        self.start_pos = QPointF(580, 200)  # 北京的地图坐标
+        self.end_pos = QPointF(120, 150)  # 纽约的地图坐标
+        self.current_pos = QPointF(self.start_pos)  # 当前动态绘制的点，从起点开始
+
+        # 设置计时器用于动态绘制
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.updateFlightPath)
+        self.timer.start(30)  # 每30毫秒更新一次
+
+        self.isFlying = True  # 添加一个标志来控制是否正在绘制航线
+
+        self.show()
+
+    def updateFlightPath(self):
+        # 计算当前点到终点的距离
+        dx = self.end_pos.x() - self.current_pos.x()
+        dy = self.end_pos.y() - self.current_pos.y()
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+
+        # 判断是否到达终点
+        if distance > 5:
+            # 计算每次前进的步长，更新 current_pos
+            step_size = 5  # 控制航线绘制的速度
+            self.current_pos.setX(self.current_pos.x() + dx / distance * step_size)
+            self.current_pos.setY(self.current_pos.y() + dy / distance * step_size)
+        else:
+            # 到达终点，停止计时器
+            self.timer.stop()
+            self.isFlying = False  # 设置标志为False，停止绘制
+
+        # 只有在航线仍在绘制时才调用 update
+        if self.isFlying:
+            self.update()  # 重新触发绘制
+
+    def paintEvent(self, event):
+        super().paintEvent(event)
+        painter = QPainter(self)
+
+        # 绘制地图
+        painter.drawPixmap(0, 0, self.pixmap)  # 将地图绘制到窗口
+
+        # 设置绘制航线的画笔
+        pen = QPen(QColor(173, 216, 230), 4)  # 浅蓝色（RGB: 173, 216, 230），粗细为4
+        painter.setPen(pen)
+
+        # 绘制从起点到当前点的航线
+        if self.isFlying:
+            painter.drawLine(self.start_pos, self.current_pos)
+        else:
+            painter.drawLine(self.start_pos, self.end_pos)  # 当航线绘制完成，直接绘制从起点到终点的线
+
+        painter.end()  # 结束绘图
+
+
+if __name__ == '__main__':
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+    app = QApplication(sys.argv)
+    ex = FlightMap()
+    sys.exit(app.exec_())
+
+
+ self.china_map = [
+            [3, 947, 396],
+            [4, 637, 663],
+            [5, 1106, 265],
+            [9, 1010, 602],
+            [10, 1010, 795],
+            [11, 1070, 663],
+            [12, 913, 855],
+            [14, 313, 301],
+            [15, 841, 626],
+            [16, 745, 566]
+        ]
+
+ from random import random
+
+from IPython.external.qt_for_kernel import QtCore
+from PyQt5.QtGui import QPainter, QPen, QPixmap
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QTableWidgetItem, \
+    QMessageBox, QTableWidget
+from PyQt5.uic import loadUi
+from boltons.funcutils import partial
+
+from src.QT_src.change import changeWindow
+from src.lib.share import *
+
+
+class userInfo(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = loadUi(share.UserInfo_ui, self)
+        self.setup_user_info()
+        self.pixmap = None
+
+        self.china_map = [
+            [3, 947, 396],
+            [4, 637, 663],
+            [5, 1106, 265],
+            [9, 1010, 602],
+            [10, 1010, 795],
+            [11, 1070, 663],
+            [12, 913, 855],
+            [14, 313, 301],
+            [15, 841, 626],
+            [16, 745, 566]
+        ]
+
+
+    def setup_user_info(self):
+        layout = QVBoxLayout()
+        widgets_to_remove = []
+
+        for widget in self.ui.scrollArea.widget().findChildren(QWidget):
+            widgets_to_remove.append(widget)
+
+        for widget in widgets_to_remove:
+            widget.deleteLater()
+
+        for idx, flights in enumerate(share.user_flights):
+            if flights and any(flight is not None for flight in flights):
+                widget = QWidget()
+                card_layout = QVBoxLayout(widget)
+
+                table = self.create_flight_table(flights, idx)
+                card_layout.addWidget(table)
+
+                button_layout = QHBoxLayout()
+
+                refund_button = QPushButton("退票")
+                refund_button.clicked.connect(partial(self.refund_ticket_group, idx))
+                button_layout.addWidget(refund_button)
+
+                change_button = QPushButton("改签")
+                change_button.clicked.connect(partial(self.change_ticket_group, idx))
+                button_layout.addWidget(change_button)
+
+                route_button = QPushButton("航线")
+                route_button.clicked.connect(partial(self.view_route, idx))
+                button_layout.addWidget(route_button)
+
+                card_layout.addLayout(button_layout)
+
+                layout.addWidget(widget)
+
+        self.ui.scrollArea.widget().setLayout(layout)
+        self.ui.scrollArea.setWidgetResizable(True)
+
+        # 添加判断条件，更新map标签的图片并绘制内容
+
+
+    def create_flight_table(self, flights, user_idx):
+        table = QTableWidget(len(flights), 8)
+        table.setHorizontalHeaderLabels(
+            ["信息编号", "出发时间", "出发机场", "飞行时间", "到达时间", "到达机场", "航班信息", "票价"])
+
+        table.setColumnWidth(0, 100)
+        table.setColumnWidth(1, 100)
+        table.setColumnWidth(2, 120)
+        table.setColumnWidth(3, 100)
+        table.setColumnWidth(4, 100)
+        table.setColumnWidth(5, 120)
+        table.setColumnWidth(6, 120)
+        table.setColumnWidth(7, 100)
+
+        table.setFixedHeight(160)
+
+        row_height = 40
+        for row, flight in enumerate(flights):
+            if flight is None:
+                continue
+
+            departure_time, departure_airport, duration, arrival_time, arrival_airport, flight_number, price = flight
+            table.setItem(row, 0, QTableWidgetItem(f"0000{random.randint(0, 9999):04d}"))
+            table.setItem(row, 1, QTableWidgetItem(departure_time.strftime('%H:%M')))
+            table.setItem(row, 2, QTableWidgetItem(departure_airport))
+            table.setItem(row, 3, QTableWidgetItem(duration))
+            table.setItem(row, 4, QTableWidgetItem(arrival_time.strftime('%H:%M')))
+            table.setItem(row, 5, QTableWidgetItem(arrival_airport))
+            table.setItem(row, 6, QTableWidgetItem(flight_number))
+            table.setItem(row, 7, QTableWidgetItem(f"¥{price}"))
+
+            table.setRowHeight(row, row_height)
+
+        return table
+
+    def refund_ticket_group(self, user_idx):
+        share.user_flights[user_idx] = [None] * len(share.user_flights[user_idx])
+        self.setup_user_info()
+        QMessageBox.information(self, "退票成功", "航班已退票！")
+
+    def change_ticket_group(self, user_idx):
+        self.close()
+        change_window = changeWindow(share.num_flights[user_idx], user_idx, self)
+        change_window.show()
+
+    def update_flight_info(self, user_idx, flights):
+        share.user_flights[user_idx] = flights
+        self.setup_user_info()
+
+    def view_route(self, user_idx):
+        self.update_map_image(share.condition)
+
+    def update_map_image(self, condition):
+
+        if condition == 0:
+            self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\background2.png')
+        elif condition == 1:
+            self.pixmap = QPixmap(r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\data\images\cmap.png')
+        self.printmap(0, 0, 1250, 1000)
+
+    def printmap(self, x1, y1, x2, y2):
+        # 现在开始在图片上绘制
+        painter = QPainter(self.pixmap)
+
+        # 设置画笔
+        pen = QPen(Qt.blue)  # 设置红色画笔
+        pen.setWidth(5)  # 设置画笔宽度
+        pen.setStyle(Qt.DashLine)  # 设置画笔样式为虚线
+        painter.setPen(pen)
+
+        # 在图片上绘制线条
+        painter.drawLine(x1, y1, x2, y2)
+
+        painter.end()  # 结束绘制
+
+        # 更新QLabel显示的pixmap
+        self.ui.map.setPixmap(self.pixmap)
+        self.ui.map.setScaledContents(True)
+
+if __name__ == "__main__":
+    import sys
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
+    app = QApplication(sys.argv)
+    window = userInfo()
+    window.show()
+    sys.exit(app.exec_())

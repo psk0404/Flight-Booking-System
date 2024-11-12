@@ -1,5 +1,3 @@
-
-import uuid
 class share:
     loginWin = None
     mainWin = None
@@ -10,6 +8,8 @@ class share:
     MainSyetem_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\MainSystem.ui'
     BuyWindow_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\buy.ui'
     UserInfo_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\info.ui'
-
-    user_flights = []
+    change_ui = r'C:\Users\Lenovo\PycharmProjects\BJUT_dsc\QT\change.ui'
     num = 0
+    condition = 1
+    num_flights = []
+    user_flights = []

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>580</height>
+    <width>600</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,17 +26,17 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>160</y>
-      <width>441</width>
-      <height>390</height>
+      <y>130</y>
+      <width>480</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QScrollArea {
-    border: 2px solid #4CAF50;               /* 设置2px绿色边框 */
+    border: 3px solid #00BFFF;             
     border-radius: 12px;                     /* 设置圆角 */
     background-color: #f9f9f9;               /* 设置背景色 */
-    padding: 10px;                           /* 设置内边距 */
+    padding: 3px;                           /* 设置内边距 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加柔和的阴影效果 */
     transition: all 0.3s ease;               /* 添加过渡效果，让状态改变时更平滑 */
 }
@@ -57,8 +57,8 @@ QScrollArea &gt; QWidget {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>417</width>
-       <height>366</height>
+       <width>468</width>
+       <height>228</height>
       </rect>
      </property>
     </widget>
@@ -66,8 +66,8 @@ QScrollArea &gt; QWidget {
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>70</y>
+      <x>220</x>
+      <y>50</y>
       <width>261</width>
       <height>51</height>
      </rect>
@@ -86,7 +86,7 @@ QScrollArea &gt; QWidget {
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>60</y>
+      <y>40</y>
       <width>91</width>
       <height>81</height>
      </rect>
@@ -96,6 +96,29 @@ QScrollArea &gt; QWidget {
     </property>
     <property name="pixmap">
      <pixmap>../data/images/logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="map">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>400</y>
+      <width>480</width>
+      <height>250</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+                border: 3px solid #00BFFF;  /* 蓝色边框 */
+                border-radius: 10px;  /* 边框圆角 */
+                padding: 2px;  /* 内边距，避免图片紧贴边框 */
+            }</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
