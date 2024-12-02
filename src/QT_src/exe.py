@@ -1,5 +1,6 @@
-from login_check import *
-from main_system import *
+from login_win import *
+from main_win import *
+import atexit
 
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
 app = QApplication([])
@@ -8,5 +9,9 @@ app = QApplication([])
 share.loginWin = win_login()
 share.loginWin.ui.show()
 
+# 在程序退出时调用 save_slide()
+atexit.register(share.save_slide)
+
 # 启动事件循环
 app.exec_()
+

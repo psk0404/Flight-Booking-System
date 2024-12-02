@@ -7,8 +7,9 @@ from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTa
     QMessageBox, QApplication
 from PyQt5.uic import loadUi
 from boltons.funcutils import partial
-from src.QT_src.change import changeWindow
-from src.lib.share import *
+from src.QT_src.change_win import changeWindow
+from src.lib.User import *
+
 
 class userInfo(QMainWindow):
     def __init__(self):
@@ -27,7 +28,7 @@ class userInfo(QMainWindow):
             [15, 841, 626],
             [16, 745, 566]
         ]
-        self.world_map =[
+        self.world_map = [
             [1, 950, 225],
             [2, 1000, 210],
             [5, 1640, 245],
@@ -37,6 +38,27 @@ class userInfo(QMainWindow):
             [11, 1610, 310],
             [12, 1570, 350],
             [13, 1640, 285]
+        ]
+
+        self.horizontalSlider = self.ui.horizontalSlider
+        self.horizontalSlider_2 = self.ui.horizontalSlider_2
+        self.horizontalSlider_3 = self.ui.horizontalSlider_3
+
+        # Set initial slider values from share.slide
+        self.horizontalSlider.setValue(share.slide[0])
+        self.horizontalSlider_2.setValue(share.slide[1])
+        self.horizontalSlider_3.setValue(share.slide[2])
+
+        self.horizontalSlider.valueChanged.connect(self.update_slider_values)
+        self.horizontalSlider_2.valueChanged.connect(self.update_slider_values)
+        self.horizontalSlider_3.valueChanged.connect(self.update_slider_values)
+
+    def update_slider_values(self):
+        # Save current slider values to share.slide
+        share.slide = [
+            self.horizontalSlider.value(),
+            self.horizontalSlider_2.value(),
+            self.horizontalSlider_3.value()
         ]
 
     def setup_user_info(self):
@@ -186,7 +208,6 @@ class userInfo(QMainWindow):
         else:
             share.condition = 1
 
-
     def cntchina(self, x):
         if x <= 5:
             return self.china_map[x - 3][1], self.china_map[x - 3][2]
@@ -203,8 +224,10 @@ class userInfo(QMainWindow):
         elif 11 <= x <= 13:
             return self.world_map[x - 5][1], self.world_map[x - 5][2]
 
+
 if __name__ == "__main__":
     import sys
+
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
     window = userInfo()

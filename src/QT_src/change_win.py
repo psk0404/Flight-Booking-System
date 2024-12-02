@@ -2,7 +2,7 @@ from functools import partial
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QTableWidget, QTableWidgetItem, QMessageBox
 from PyQt5.uic import loadUi
 from src.algorithm.data_manager import data_loader
-from src.lib.share import share
+from src.lib.User import share
 
 class changeWindow(QMainWindow):
     def __init__(self, num_flight, idx, parent=None):
@@ -42,7 +42,7 @@ class changeWindow(QMainWindow):
                 widget = QWidget()
                 card_layout = QVBoxLayout(widget)
 
-                table = self.create_flight_table(flights, idx)
+                table = self.create_flight_table(flights)
                 card_layout.addWidget(table)
 
                 button_layout = QHBoxLayout()
@@ -58,7 +58,7 @@ class changeWindow(QMainWindow):
         self.ui.scrollArea.widget().setLayout(layout)
         self.ui.scrollArea.setWidgetResizable(True)
 
-    def create_flight_table(self, flights, user_idx):
+    def create_flight_table(self, flights):
         table = QTableWidget(len(flights), 7)
         table.setHorizontalHeaderLabels(
             ["出发时间", "出发机场", "飞行时间", "到达时间", "到达机场", "航班信息", "票价"])

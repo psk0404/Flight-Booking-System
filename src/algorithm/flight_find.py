@@ -1,7 +1,7 @@
 from src.algorithm.path_find import Graph
 from src.algorithm.data_manager import data_loader
-from src.lib.share import *
-from src.algorithm.search import recursion
+from src.lib.User import *
+from src.algorithm.recursion import recursion
 
 
 class Flight_Info:

@@ -2,9 +2,9 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFrame, QSizePolicy, QLabel
 from functools import partial
 import os
-from src.QT_src.Info import *
-from src.QT_src.buy import BuyWindow
-from src.lib.share import share
+from src.QT_src.Info_win import *
+from src.QT_src.buy_win import BuyWindow
+from src.lib.User import share
 from src.algorithm.flight_find import Info
 from src.algorithm.data_manager import data_loader
 
@@ -123,15 +123,15 @@ class Mainsystem(QMainWindow):
 
     def sort_flights1(self):
         time_sort = self.ui.from_3.currentText().strip() == "升序时间"
-        # 排序根据价格
+
         if time_sort:
             self.sort.sort(key=lambda x: x[1])
         else:
             self.sort.sort(key=lambda x: x[1], reverse=True)
-        # 清空现有内容
+
         self.clear_scroll_area()
-        # 更新显示
-        self.update_scroll_area()  # 重新渲染排序后的数据
+
+        self.update_scroll_area()
 
     def clear_scroll_area(self):
         # 获取当前的scroll area widget
@@ -256,7 +256,7 @@ class Mainsystem(QMainWindow):
         self.user_info_window.show()
 
     def switch(self):
-        from src.QT_src.query_window import QueryWindow
+        from src.QT_src.query_win import QueryWindow
         share.queryWin = QueryWindow()
         share.queryWin.show()
         self.close()

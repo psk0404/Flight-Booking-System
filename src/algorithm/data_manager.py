@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from src.lib.share import *
+from src.lib.User import *
 
 
 class data_loader:

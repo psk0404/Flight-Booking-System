@@ -303,8 +303,8 @@ QScrollArea &gt; QWidget {
    <widget class="QComboBox" name="from_2">
     <property name="geometry">
      <rect>
-      <x>193</x>
-      <y>142</y>
+      <x>221</x>
+      <y>141</y>
       <width>178</width>
       <height>30</height>
      </rect>
@@ -367,8 +367,8 @@ QComboBox::down-arrow {
    <widget class="QComboBox" name="from_3">
     <property name="geometry">
      <rect>
-      <x>391</x>
-      <y>142</y>
+      <x>449</x>
+      <y>141</y>
       <width>178</width>
       <height>30</height>
      </rect>
@@ -428,6 +428,43 @@ QComboBox::down-arrow {
      </property>
     </item>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>140</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>华文中宋</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #FFFFFF;   /* 设置背景颜色为白色 */
+    border: 2px solid #3498db;   /* 设置主边框为2像素，颜色为深蓝色 */
+    border-radius: 15px;         /* 圆角 */
+
+}
+
+QPushButton:hover {
+    background-color: #f0f0f0;   /* 悬停时背景颜色变化 */
+}
+
+QPushButton:pressed {
+    background-color: #3498db;   /* 按下时背景颜色变化 */
+    color: #FFFFFF;              /* 按下时字体颜色为白色 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>智能筛选</string>
+    </property>
+   </widget>
    <zorder>background</zorder>
    <zorder>from_2</zorder>
    <zorder>from_3</zorder>
@@ -438,6 +475,7 @@ QComboBox::down-arrow {
    <zorder>pushButton1</zorder>
    <zorder>pushButton</zorder>
    <zorder>pushButton2</zorder>
+   <zorder>pushButton_2</zorder>
   </widget>
   <action name="actionbanbenhao">
    <property name="text">
