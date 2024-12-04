@@ -230,7 +230,9 @@ QScrollArea &gt; QWidget {
     border: 3px solid blue;  /* 设置蓝色边框，边框宽度为3px */
     color: black;  /* 文本颜色设置为黑色 */
 }
-</string>
+QPushButton:hover {
+    background-color: #f0f0f0;   /* 悬停时背景颜色变化 */
+}</string>
     </property>
     <property name="text">
      <string>BACK </string>
@@ -261,6 +263,9 @@ QScrollArea &gt; QWidget {
     background-color: white;  /* 背景颜色设置为白色 */
     border: 3px solid blue;  /* 设置蓝色边框，边框宽度为3px */
     color: black;  /* 文本颜色设置为黑色 */
+}
+QPushButton:hover {
+    background-color: #f0f0f0;   /* 悬停时背景颜色变化 */
 }
 </string>
     </property>
@@ -293,6 +298,9 @@ QScrollArea &gt; QWidget {
     background-color: white;  /* 背景颜色设置为白色 */
     border: 3px solid blue;  /* 设置蓝色边框，边框宽度为3px */
     color: black;  /* 文本颜色设置为黑色 */
+}
+QPushButton:hover {
+    background-color: #f0f0f0;   /* 悬停时背景颜色变化 */
 }
 </string>
     </property>

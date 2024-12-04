@@ -17,6 +17,8 @@ class share:
     user_flights = []
     line_flights = []
     slide = []
+    service = []
+    food_order = []
 
     @staticmethod
     def save_slide():

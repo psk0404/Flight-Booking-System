@@ -300,17 +300,23 @@ QPushButton {
      <attribute name="title">
       <string>餐饮服务</string>
      </attribute>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <widget class="QLabel" name="label_6">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>9</y>
+        <width>291</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
 QLabel {
     border: 2px solid #3498db;           /* 设置边框颜色和宽度 */
     border-radius: 10px;                 /* 设置圆角 */
@@ -321,22 +327,28 @@ QLabel {
     color: #333;                         /* 设置字体颜色 */
 }
 </string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QListWidget" name="listWidget">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QListWidget {
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>9</y>
+        <width>256</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QListWidget {
     border: 2px solid #3498db;           /* 设置边框颜色和宽度 */
     border-radius: 10px;                 /* 设置圆角 */
    
@@ -344,75 +356,102 @@ QLabel {
 }
 
 </string>
-        </property>
-        <item>
-         <property name="text">
-          <string>汉堡三件套</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>华文中宋</family>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-         <property name="foreground">
-          <brush brushstyle="Dense2Pattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>婴儿餐</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>华文中宋</family>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>清淡套餐</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>华文中宋</family>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>无服务</string>
-         </property>
-         <property name="font">
-          <font>
-           <family>华文中宋</family>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-        </item>
-       </widget>
+      </property>
+      <item>
+       <property name="text">
+        <string>汉堡三件套</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>华文中宋</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+       <property name="foreground">
+        <brush brushstyle="Dense2Pattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </property>
       </item>
-     </layout>
+      <item>
+       <property name="text">
+        <string>婴儿餐</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>华文中宋</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>清淡套餐</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>华文中宋</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>无服务</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>华文中宋</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
+     </widget>
+     <widget class="QListWidget" name="listWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>120</y>
+        <width>256</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QListWidget {
+    border: 2px solid #3498db;           /* 设置边框颜色和宽度 */
+    border-radius: 10px;                 /* 设置圆角 */
+   
+    padding: 5px;                        /* 设置内边距 */
+}
+
+</string>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::MultiSelection</enum>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -463,6 +502,62 @@ QLabel {
 
 </string>
         </property>
+        <item>
+         <property name="text">
+          <string>七天酒店</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>汉庭酒店</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>希尔顿酒店</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>无服务</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -516,6 +611,62 @@ QLabel {
 
 </string>
         </property>
+        <item>
+         <property name="text">
+          <string>出租车</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>网约车</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>机场大巴</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>无服务</string>
+         </property>
+         <property name="font">
+          <font>
+           <family>华文中宋</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

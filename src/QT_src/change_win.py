@@ -98,3 +98,4 @@ class changeWindow(QMainWindow):
             self.parent.update_flight_info(self.idx, flights)
 
         QMessageBox.information(self, "改签成功", f"已改签 {idx + 1} 航班！")
+        self.close()

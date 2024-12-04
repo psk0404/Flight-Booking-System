@@ -101,9 +101,10 @@ class userInfo(QMainWindow):
         QMessageBox.information(self, "退票成功", "航班已退票！")
 
     def create_flight_table(self, flights, user_idx):
-        table = QTableWidget(len(flights), 9)
+        table = QTableWidget(len(flights), 12)
         table.setHorizontalHeaderLabels(
-            ["信息编号", "出发时间", "出发机场", "飞行时间", "到达时间", "到达机场", "航班信息", "票价", "操作"])
+            ["信息编号", "出发时间", "出发机场", "飞行时间", "到达时间", "到达机场", "航班信息", "票价", "操作",
+             "餐饮服务", "住宿服务", "接机服务"])
 
         table.setColumnWidth(0, 100)
         table.setColumnWidth(1, 100)
@@ -114,6 +115,9 @@ class userInfo(QMainWindow):
         table.setColumnWidth(6, 120)
         table.setColumnWidth(7, 100)
         table.setColumnWidth(8, 80)
+        table.setColumnWidth(9, 100)
+        table.setColumnWidth(10, 100)
+        table.setColumnWidth(11, 100)
 
         table.setFixedHeight(160)
 
@@ -134,8 +138,22 @@ class userInfo(QMainWindow):
 
             route_button = QPushButton("航线")
             route_button.clicked.connect(partial(self.view_route, user_idx, row))
-
             table.setCellWidget(row, 8, route_button)
+
+            services = share.service[user_idx]
+            service1 = "无"
+            if row + 1 in share.food_order[user_idx]:
+                service1 = ["汉堡三件套", "婴儿餐", "清淡套餐", "无"][services[0] - 1]
+
+            service2 = "无"
+            service3 = "无"
+            if row == len(flights) - 1:
+                service2 = ["七天酒店", "汉庭酒店", "希尔顿酒店", "无"][services[1] - 1]
+                service3 = ["出租车", "网约车", "机场大巴", "无"][services[2] - 1]
+
+            table.setItem(row, 9, QTableWidgetItem(service1))
+            table.setItem(row, 10, QTableWidgetItem(service2))
+            table.setItem(row, 11, QTableWidgetItem(service3))
 
             table.setRowHeight(row, row_height)
 
@@ -145,10 +163,6 @@ class userInfo(QMainWindow):
         self.close()
         change_window = changeWindow(share.num_flights[user_idx], user_idx, self)
         change_window.show()
-
-    def update_flight_info(self, user_idx, flights):
-        share.user_flights[user_idx] = flights
-        self.setup_user_info()
 
     def view_route(self, user_idx, row):
         a = share.line_flights[user_idx][row][0]
@@ -171,6 +185,10 @@ class userInfo(QMainWindow):
         # show picture
         self.ui.map.setPixmap(self.pixmap)
         self.ui.map.setScaledContents(True)
+
+    def update_flight_info(self, user_idx, flights):
+        share.user_flights[user_idx] = flights
+        self.setup_user_info()
 
     def printmap(self, x1, y1, x2, y2):
         painter = QPainter(self.pixmap)

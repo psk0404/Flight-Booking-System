@@ -83,7 +83,7 @@ class Mainsystem(QMainWindow):
             expand_button = QPushButton("展开")
             expand_button.clicked.connect(partial(self.toggle_expansion, label, expand_button))
             buy_button = QPushButton("购买")
-            buy_button.clicked.connect(partial(self.buy, flights, self.got.all, line_flights))
+            buy_button.clicked.connect(partial(self.buy, flights, self.got.all, line_flights, len(flights)))
             button_layout.addWidget(expand_button)
             button_layout.addWidget(buy_button)
             card_layout.addWidget(label)
@@ -176,7 +176,7 @@ class Mainsystem(QMainWindow):
             expand_button = QPushButton("展开")
             expand_button.clicked.connect(partial(self.toggle_expansion, label, expand_button))
             buy_button = QPushButton("购买")
-            buy_button.clicked.connect(partial(self.buy, flights, self.got.all, line_flights))
+            buy_button.clicked.connect(partial(self.buy, flights, self.got.all, line_flights, len(flights)))
 
             button_layout.addWidget(expand_button)
             button_layout.addWidget(buy_button)
@@ -187,7 +187,7 @@ class Mainsystem(QMainWindow):
             layout1.addWidget(widget)
             label.expanded_height = 225 * len(self.got.all[k])
 
-        # 更新scroll area的布局
+
         self.ui.scrollArea.setWidget(QWidget())
         self.ui.scrollArea.widget().setLayout(layout1)
         self.ui.scrollArea.setWidgetResizable(True)
@@ -210,8 +210,8 @@ class Mainsystem(QMainWindow):
     def ec_label(self, label, end_height):
         label.setFixedHeight(end_height)
 
-    def buy(self, flights, num_flights, line_flights):
-        self.buy_window = BuyWindow(flights, num_flights, line_flights)
+    def buy(self, flights, num_flights, line_flights, times):
+        self.buy_window = BuyWindow(flights, num_flights, line_flights, times)
         self.buy_window.show()
 
     def format_flight_info(self, flights, expanded=False):
