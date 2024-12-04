@@ -1,7 +1,10 @@
+import math
+
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QFrame, QSizePolicy, QLabel
 from functools import partial
 import os
+import sympy as sp
 from src.QT_src.Info_win import *
 from src.QT_src.buy_win import BuyWindow
 from src.lib.User import share
@@ -44,6 +47,8 @@ class Mainsystem(QMainWindow):
         self.ui.pushButton.clicked.connect(self.show_info)
         self.ui.pushButton1.clicked.connect(self.switch)
         self.ui.pushButton2.clicked.connect(self.exit)
+        self.ui.button.clicked.connect(self.f2)
+        self.ui.pushButton_2.clicked.connect(self.star)
 
         self.ui.from_2.currentIndexChanged.connect(self.sort_flights0)
         self.ui.from_3.currentIndexChanged.connect(self.sort_flights1)
@@ -56,6 +61,11 @@ class Mainsystem(QMainWindow):
 
         self.ui.toc.setFont(QFont("Segoe UI", 18, QFont.Bold))
         self.ui.toc.setAlignment(QtCore.Qt.AlignCenter)
+
+        self.extra = []
+        self.best = -1
+
+
 
     def setup_scroll_area(self):
         layout = QVBoxLayout()
@@ -95,6 +105,11 @@ class Mainsystem(QMainWindow):
         self.ui.scrollArea.widget().setLayout(layout)
         self.ui.scrollArea.setWidgetResizable(True)
 
+    def star(self):
+        self.clear_scroll_area()
+        self.setup_scroll_area()
+
+
     def calculate(self, flights):
         total_price = 0
         total_time = 0
@@ -119,7 +134,7 @@ class Mainsystem(QMainWindow):
         # 清空现有内容
         self.clear_scroll_area()
         # 更新显示
-        self.update_scroll_area()  # 重新渲染排序后的数据
+        self.update_scroll_area()
 
     def sort_flights1(self):
         time_sort = self.ui.from_3.currentText().strip() == "升序时间"
@@ -153,6 +168,7 @@ class Mainsystem(QMainWindow):
             flights = []
             line_flights = []
             k = self.sort[i][2]
+            # print(k)
             # 获取航班数据
             for j in range(len(self.got.all[k])):
                 num0 = self.got.all[k][j][0]
@@ -210,7 +226,40 @@ class Mainsystem(QMainWindow):
     def ec_label(self, label, end_height):
         label.setFixedHeight(end_height)
 
+
+    def tune(self, flights, times):
+
+        tprice = 0
+        for i in range(len(flights)):
+            tprice += flights[i][6]
+
+        if tprice != self.best:
+            b, a = self.calculate(flights)
+            t = times
+
+            score0 = self.cal_ep(a, 0, 0)
+
+            score1 = self.cal_ep(b, 1, 1)
+
+            score2 = self.cal_ep(t, 2, 2)
+
+            # Store the scores in a list
+            scores = [score0, score1, score2]
+
+            # Determine the index of the maximum score
+            max_index = scores.index(max(scores))
+
+            if 0.8 <= share.value[max_index] <= 1.2:
+                share.value[max_index] -= 0.02
+
+
+
     def buy(self, flights, num_flights, line_flights, times):
+        if self.best != -1:
+            self.tune(flights, times)
+
+
+
         self.buy_window = BuyWindow(flights, num_flights, line_flights, times)
         self.buy_window.show()
 
@@ -263,6 +312,108 @@ class Mainsystem(QMainWindow):
 
     def exit(self):
         self.close()
+
+    def f2(self):
+        self.cal_extra()
+        self.clear_scroll_area()
+        self.update_scroll_area()
+
+    # 筛选
+    def screening(self):
+
+        self.extra.clear()
+
+        max_price = float('-inf')
+        min_price = float('inf')
+        max_time = float('-inf')
+        min_time = float('inf')
+        max_transfers = float('-inf')
+        min_transfers = float('inf')
+
+        for i in range(len(self.got.all)):
+            flights = []
+            line_flights = []
+            for j in range(len(self.got.all[i])):
+                num0 = self.got.all[i][j][0]
+                num1 = self.got.all[i][j][1]
+                num2 = self.got.all[i][j][2]
+                flights.append(self.got.loader.get_flight_info_all(num0, num1, num2))
+                line_flights.append([num0, num1])
+
+            total_time, total_price = self.calculate(flights)
+            transfers = len(flights)
+
+            if total_price > max_price:
+                max_price = total_price
+            if total_price < min_price:
+                min_price = total_price
+
+            if total_time > max_time:
+                max_time = total_time
+            if total_time < min_time:
+                min_time = total_time
+
+            if transfers > max_transfers:
+                max_transfers = transfers
+            if transfers < min_transfers:
+                min_transfers = transfers
+
+        self.extra.append(max_price)
+        self.extra.append(min_price)
+        self.extra.append(max_time)
+        self.extra.append(min_time)
+        self.extra.append(max_transfers)
+        self.extra.append(min_transfers)
+
+    def cal_ep(self, v, idx0, idx1):
+        dof = self.extra[idx0 * 2] - self.extra[idx0 * 2 + 1] + 1
+        mof = v
+        x = (mof / dof * 4 - 4)
+
+        if share.slide[idx1] > 50:
+            a = 25 + (share.slide[idx1] - 50) * 1.5
+        else:
+            a = share.slide[idx1] * 0.5
+
+        numerator =  math.exp(x) - math.exp(-x)
+        denominator = a * math.exp(x) + 0.5 * math.exp(-x)
+
+
+        return (numerator / denominator + 2) * 50
+
+    def cal_extra(self):
+
+        self.screening()
+        self.sort.clear()
+        for i in range(len(self.got.all)):
+            flights = []
+            line_flights = []
+            for j in range(len(self.got.all[i])):
+                num0 = self.got.all[i][j][0]
+                num1 = self.got.all[i][j][1]
+                num2 = self.got.all[i][j][2]
+                flights.append(self.got.loader.get_flight_info_all(num0, num1, num2))
+                line_flights.append([num0, num1])
+
+            time, price = self.calculate(flights)
+            trans = len(flights)
+
+            score0 = self.cal_ep(price, 0, 0)
+            score1 = self.cal_ep(time, 1, 1)
+            score2 = self.cal_ep(trans, 2, 2)
+
+            t_score = share.value[0] * score0 + share.value[1] * score1 + share.value[2] * score2
+
+            self.sort.append([t_score, price, i])
+
+
+        self.sort.sort(key=lambda x: x[0])
+        self.best = self.sort[0][1]
+
+        if len(self.sort) > 3:
+            self.sort = self.sort[:3]
+
+
 
 
 class get:

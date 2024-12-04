@@ -436,7 +436,7 @@ QComboBox::down-arrow {
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="button">
     <property name="geometry">
      <rect>
       <x>680</x>
@@ -473,6 +473,41 @@ QPushButton:pressed {
      <string>智能筛选</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    width: 200px;  /* 宽度较大 */
+    height: 50px;  /* 高度较小 */
+    border-radius: 25px;  /* 圆角设置为高度的一半，形成椭圆 */
+    background-color: white;  /* 背景颜色设置为白色 */
+    border: 3px solid blue;  /* 设置蓝色边框，边框宽度为3px */
+    color: black;  /* 文本颜色设置为黑色 */
+}
+QPushButton:hover {
+    background-color: #f0f0f0;   /* 悬停时背景颜色变化 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>REST</string>
+    </property>
+   </widget>
    <zorder>background</zorder>
    <zorder>from_2</zorder>
    <zorder>from_3</zorder>
@@ -483,6 +518,7 @@ QPushButton:pressed {
    <zorder>pushButton1</zorder>
    <zorder>pushButton</zorder>
    <zorder>pushButton2</zorder>
+   <zorder>button</zorder>
    <zorder>pushButton_2</zorder>
   </widget>
   <action name="actionbanbenhao">

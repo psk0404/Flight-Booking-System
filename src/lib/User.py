@@ -19,20 +19,27 @@ class share:
     slide = []
     service = []
     food_order = []
+    value = [1, 1, 1]
 
     @staticmethod
     def save_slide():
-        with open('slide_values.json', 'w') as f:
-            json.dump(share.slide, f)
+        data = {
+            'slide': share.slide,
+            'value': share.value
+        }
+        with open('save.json', 'w') as f:
+            json.dump(data, f)
 
-    # 从文件加载 slide
     @staticmethod
     def load_slide():
         try:
-            with open('slide_values.json', 'r') as f:
-                share.slide = json.load(f)
+            with open('save', 'r') as f:
+                data = json.load(f)
+                share.slide = data.get('slide', [0, 0, 0])
+                share.value = data.get('value', [1, 1, 1])
         except FileNotFoundError:
-            share.slide = [0, 0, 0]  # 如果文件不存在，使用默认值
+            share.slide = [0, 0, 0]
+            share.value = [1, 1, 1]
 
 # 在程序启动时调用 load_slide()
 share.load_slide()

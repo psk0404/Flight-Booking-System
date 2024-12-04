@@ -30,7 +30,7 @@ class BuyWindow(QMainWindow):
         font.setStyleStrategy(QFont.PreferAntialias)
 
         for i in range(self.times):
-            item = QListWidgetItem(str(i + 1))
+            item = QListWidgetItem(f"航班{i + 1}")
 
             item.setFont(font)
             item.setTextAlignment(Qt.AlignCenter)
@@ -125,17 +125,17 @@ class BuyWindow(QMainWindow):
             # Initialize self.mem2 if not already done
             if not self.mem2:
                 self.mem2 = [[] for _ in range(self.times)]
+            # Ensure self.mem2 has enough sublists to accommodate the new entry
+            while len(self.mem2) <= share.num:
+                self.mem2.append([])
+
             # Get selected items from listWidget_4 and convert to integers
             selected_items = self.listWidget_4.selectedItems()
-
-            self.mem2[share.num] = [int(item.text()) for item in selected_items]
-
+            self.mem2[share.num] = [int(item.text().replace("航班", "")) for item in selected_items]
             self.mem2[share.num].sort()
 
             share.food_order.append(self.mem2[share.num])
 
-            # print(share.food_order[0])
-            # print(share.service[0], share.service[1], share.service[2]
             share.num += 1
 
             self.close()
@@ -149,6 +149,6 @@ if __name__ == "__main__":
     import sys
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
-    window = BuyWindow()
-    window.show()
+    # window = BuyWindow()
+    # window.show()
     sys.exit(app.exec_())
