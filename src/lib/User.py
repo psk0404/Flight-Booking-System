@@ -1,3 +1,4 @@
+import atexit
 import json
 
 class share:
@@ -33,15 +34,19 @@ class share:
     @staticmethod
     def load_slide():
         try:
-            with open('save', 'r') as f:
+            # 尝试加载文件中的数据
+            with open('save.json', 'r') as f:
                 data = json.load(f)
-                share.slide = data.get('slide', [0, 0, 0])
-                share.value = data.get('value', [1, 1, 1])
+
+                share.slide = data.get('slide', share.slide)  # 使用文件中保存的值，若没有则使用当前值
+                share.value = data.get('value', share.value)  # 同上
         except FileNotFoundError:
-            share.slide = [0, 0, 0]
+            # 文件不存在时，使用默认值
+            share.slide = [50, 50, 50]
             share.value = [1, 1, 1]
 
 # 在程序启动时调用 load_slide()
 share.load_slide()
-# 在程序退出时调用 save_slide()
-share.save_slide()
+
+# 注册 save_slide 在程序退出时调用
+atexit.register(share.save_slide)

@@ -249,16 +249,16 @@ class Mainsystem(QMainWindow):
             # Determine the index of the maximum score
             max_index = scores.index(max(scores))
 
+
             if 0.8 <= share.value[max_index] <= 1.2:
                 share.value[max_index] -= 0.02
+
 
 
 
     def buy(self, flights, num_flights, line_flights, times):
         if self.best != -1:
             self.tune(flights, times)
-
-
 
         self.buy_window = BuyWindow(flights, num_flights, line_flights, times)
         self.buy_window.show()

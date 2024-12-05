@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>844</width>
+    <width>790</width>
     <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Info</string>
+   <string>客户信息服务系统</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -127,7 +127,7 @@ QScrollArea &gt; QWidget {
    <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>140</y>
       <width>161</width>
       <height>521</height>
@@ -260,7 +260,7 @@ QScrollArea &gt; QWidget {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>340</y>
+        <y>330</y>
         <width>111</width>
         <height>41</height>
        </rect>
@@ -298,7 +298,7 @@ QScrollArea &gt; QWidget {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>400</y>
+        <y>390</y>
         <width>111</width>
         <height>41</height>
        </rect>
@@ -332,11 +332,11 @@ QScrollArea &gt; QWidget {
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>280</y>
+        <y>270</y>
         <width>111</width>
         <height>41</height>
        </rect>
@@ -369,6 +369,37 @@ QScrollArea &gt; QWidget {
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>450</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+                border: 3px solid blue;   
+                background-color: white;    
+               font-family: '华文中宋'; 
+               font-size: 16px;
+                padding: 2px 2px;         
+                border-radius: 8px;        
+            }
+            QPushButton:hover {
+                background-color: lightblue;  /* 悬浮时背景变为浅蓝色 */
+            }
+            QPushButton:pressed {
+                background-color: blue;      /* 按下时背景变为蓝色 */
+                color: white;                 /* 按下时文字颜色变为白色 */
+            }
+</string>
+      </property>
+      <property name="text">
+       <string>旅游推荐</string>
+      </property>
      </widget>
     </widget>
    </widget>

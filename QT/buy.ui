@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Buy</string>
+   <string>用户订票服务系统</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../data/images/logo.png</normaloff>../data/images/logo.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: white;

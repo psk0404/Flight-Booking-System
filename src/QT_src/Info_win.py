@@ -10,6 +10,14 @@ from boltons.funcutils import partial
 from src.QT_src.change_win import changeWindow
 from src.lib.User import *
 
+from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, \
+    QMessageBox, QApplication
+from PyQt5.uic import loadUi
+from boltons.funcutils import partial
+from src.QT_src.change_win import changeWindow
+from src.lib.User import *
+from src.QT_src.web_win import MainWindow  # Import MainWindow
+
 
 class userInfo(QMainWindow):
     def __init__(self):
@@ -52,6 +60,9 @@ class userInfo(QMainWindow):
         self.horizontalSlider.valueChanged.connect(self.update_slider_values)
         self.horizontalSlider_2.valueChanged.connect(self.update_slider_values)
         self.horizontalSlider_3.valueChanged.connect(self.update_slider_values)
+
+        # Connect pushButton to open_web_window method
+        self.ui.pushButton.clicked.connect(self.open_web_window)
 
     def update_slider_values(self):
         # Save current slider values to share.slide
@@ -241,6 +252,10 @@ class userInfo(QMainWindow):
             return self.world_map[x - 3][1], self.world_map[x - 3][2]
         elif 11 <= x <= 13:
             return self.world_map[x - 5][1], self.world_map[x - 5][2]
+
+    def open_web_window(self):
+        self.web_window = MainWindow()
+        self.web_window.show()
 
 
 if __name__ == "__main__":
